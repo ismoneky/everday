@@ -9,6 +9,11 @@ import Vant from 'vant';
 import 'vant/lib/index.css';
 
 Vue.use(Vant);
+<<<<<<< HEAD
+=======
+
+
+>>>>>>> 3db33135cbe0125f53020c4fe5c483d33a28506d
 Vue.config.productionTip = false
 
 import Vant from 'vant';

@@ -6,3 +6,31 @@ body,html{
 *{
     box-sizing: border-box;
 }
+
+.border-right {
+    position: relative;
+}
+.border-right::after {
+    content: '';
+    position: absolute;
+    width: 1px;
+    height: 150%;
+    background-color: #eeeeee;
+    transform: scale(0.5);
+    top: -30%;
+    right: 0;
+}
+
+.border-bottom {
+    position: relative;
+}
+.border-bottom::after {
+    content: '';
+    position: absolute;
+    width:200% ;
+    height: 1px;
+    background-color: #cccccc;
+    transform: scale(0.5);
+    bottom:0;
+    right:  -50%;
+}
