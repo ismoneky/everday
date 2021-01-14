@@ -3,6 +3,7 @@ import VueRouter from 'vue-router'
 
 Vue.use(VueRouter)
 
+<<<<<<< HEAD
 const routes = [
  
   {
@@ -14,6 +15,20 @@ const routes = [
     path: '/lx',
     name: 'lx',
     component: () => import('../views/Practice/lx.vue')
+=======
+const routes = [{
+    path: '/',
+    redirect: '/home'
+  }, {
+    path: '/home',
+    name: 'Home',
+    component: () => import('../views/home/home.vue')
+  },
+  {
+    path: '/record',
+    name: 'record',
+    component: () => import('../views/record/record.vue')
+>>>>>>> 36f852d2907bd5ef6818f56054496affdc4746c7
   }
 ]
 

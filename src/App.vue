@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <router-view/>
+    <router-view />
   </div>
 </template>
 
@@ -13,5 +13,4 @@
   height: 100%;
   background-color: #f0f2f5;
 }
-
 </style>
