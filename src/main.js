@@ -13,6 +13,11 @@ Vue.use(Vant);
 
 Vue.config.productionTip = false
 
+import Vant from 'vant';
+import 'vant/lib/index.css';
+
+Vue.use(Vant);
+
 new Vue({
   router,
   store,
