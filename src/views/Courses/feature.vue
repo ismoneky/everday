@@ -10,6 +10,7 @@ import kc_top from '../../components/Courses/top'
 import kc_tab from '../../components/Courses/tab'
 import kc_cont from '../../components/Courses/content'
 export default {
+    name:'feature',
     data() {
         return {
             

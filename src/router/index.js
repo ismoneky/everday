@@ -1,47 +1,45 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
+import HomeRouter from '../views/home/homeRouter'
 
 Vue.use(VueRouter)
-
-<<<<<<< HEAD
 const routes = [
- 
   {
-    path: '/kc',
-    name: 'kc',
-    component: () => import('../views/Courses/kc.vue')
-  },
+    path: '/',   //渲染主页面
+    name:'hasbottomnav',
+    redirect:'/home',
+    component: () => import('../views/hasBotomNav.vue'),
+    children:[
+      ...HomeRouter
+    ]
+  }, 
   {
-    path: '/lx',
-    name: 'lx',
-    component: () => import('../views/Practice/lx.vue')
-=======
-const routes = [{
-    path: '/',
-    redirect: '/home'
-  }, {
-    path: '/home',
-    name: 'Home',
-    component: () => import('../views/home/home.vue')
-  },
-  {
-<<<<<<< HEAD
-    path: '/about',
-    name: 'About',
-    component: () => import(/* webpackChunkName: "about" */ '../views/About.vue')
-  },
-  {
-    path:'/myprofile',
-    name:"myprofile",
-    component : () => import('../views/profile/Myprofile.vue')
-}
-=======
-    path: '/record',
+    path: '/record',   //课程页面
     name: 'record',
-    component: () => import('../views/record/record.vue')
->>>>>>> 36f852d2907bd5ef6818f56054496affdc4746c7
-  }
->>>>>>> 36f852d2907bd5ef6818f56054496affdc4746c7
+    component: () => import('../views/record/record.vue'),
+    children:[
+
+    ]
+  },
+  {
+    path: '/practice',  //练习页面
+    name: 'practice ',
+    component: () => import('../views/Practice/practice.vue'),
+    children:[
+
+    ]
+  },
+  {
+    path:'/feature',  //特色课程页面
+    name:'feature',
+    component :() => import('../views/Courses/feature.vue')
+  },
+  {
+    path: '/myprofile',  // 个人中心页面
+    name: "myprofile",
+    component: () => import('../views/profile/Myprofile.vue')
+  },
+  
 ]
 
 const router = new VueRouter({
