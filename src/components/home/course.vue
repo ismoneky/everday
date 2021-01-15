@@ -1,7 +1,7 @@
 <template>
   <div class="course">
     <ul>
-      <li>
+      <li @click="gotoCourse">
         <font
           >每时每课特级教师-自主招生冲刺讲座6-多元方程组与可转化为多元方程组问题</font
         >
@@ -29,7 +29,11 @@ export default {
     return {};
   },
   mounted() {},
-  methods: {},
+  methods: {
+    gotoCourse() {
+      this.$router.push({ path: "/course" });
+    },
+  },
 };
 </script>
 <style lang="scss" scoped>

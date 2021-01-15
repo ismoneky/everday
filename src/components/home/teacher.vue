@@ -1,7 +1,7 @@
 <template>
   <div class="teacher">
     <ul>
-      <li>
+      <li @click="gototeaList">
         <img
           src="https://msmk2019.oss-cn-shanghai.aliyuncs.com/uploads/image/2019X3gWvILU7J1571983543.png"
           alt=""
@@ -22,7 +22,16 @@ export default {
     return {};
   },
   mounted() {},
-  methods: {},
+  methods: {
+    gototeaList() {
+      if (localStorage.getItem("token")) {
+        this.$router.push({ path: "teaList" });
+      } else {
+        let show = 'true'
+        this.$store.commit("teashow", show);
+      }
+    },
+  },
 };
 </script>
 <style lang="scss" scoped>
@@ -40,7 +49,7 @@ export default {
       align-items: center;
       background: #fff;
       padding: 0 0.2rem;
-      border-radius: .1rem;
+      border-radius: 0.1rem;
       img {
         width: 0.79rem;
         height: 0.79rem;
@@ -49,7 +58,7 @@ export default {
       .right {
         height: 100%;
         margin-left: 0.2rem;
-        padding: .2rem 0;
+        padding: 0.2rem 0;
         width: calc(100% - 0.9rem);
         display: flex;
         flex-direction: column;
