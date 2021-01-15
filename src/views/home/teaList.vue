@@ -1,8 +1,5 @@
 <template>
-  <div class="teaList">
-    名师列表
-    
-  </div>
+  <div class="teaList">名师列表</div>
 </template>
 <script>
 export default {

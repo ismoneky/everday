@@ -8,7 +8,11 @@
       <div class="course_title">
         <div class="title">
           <div class="left">css3</div>
-          <van-icon name="star-o" @click="shoucang" />
+          <van-icon
+            name="star-o"
+            @click="shoucang"
+            :class="state ? 'red' : ''"
+          />
         </div>
         <div>免费</div>
         <div>共2课时|52797人已报名</div>
@@ -143,6 +147,7 @@ export default {
   data() {
     return {
       count: 0,
+      state: false,
     };
   },
   mounted() {},
@@ -152,11 +157,12 @@ export default {
     },
     shoucang() {
       //   console.log(this.count);
-      this.count++;
+      // this.count++;
       console.log(this.count);
-      if (this.count % 2 === 0) {
+      this.state = !this.state;
+      if (!this.state) {
         Toast("已取消收藏");
-      } else if (this.count % 2 !== 0) {
+      } else {
         Toast("已收藏");
       }
     },
@@ -177,6 +183,7 @@ export default {
     height: 1rem;
     z-index: 999;
   }
+
   .course_content {
     margin-top: 1rem;
     height: calc(100% - 1rem);
@@ -195,6 +202,9 @@ export default {
         justify-content: space-between;
         .van-icon {
           color: black;
+        }
+        deep .red {
+          color: orangered;
         }
       }
       :nth-child(2) {
