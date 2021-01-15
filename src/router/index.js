@@ -48,6 +48,11 @@ const routes = [{
     component: () => import('../views/Practice/lxs/tjlx2.vue'),
   },
   {
+    path: '/ctjl', //套卷练习2页面
+    name: 'ctjl',
+    component: () => import('../views/Practice/lxs/ctjl.vue'),
+  },
+  {
     path: '/feature', //特色课程页面
     name: 'feature',
     component: () => import('../views/Courses/feature.vue')

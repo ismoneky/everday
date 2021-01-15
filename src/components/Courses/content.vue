@@ -34,7 +34,6 @@ export default {
 <style lang="scss" scoped>
 #top_cont {
   width: 100%;
-  height: 100%;
   padding: 0.3rem;
   // background-color: red;
   .Cards {

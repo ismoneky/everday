@@ -21,6 +21,7 @@ export default {
   align-items: center;
   justify-content: center;
   border-bottom: 0.5px solid gray;
+  background: #fff;
   p {
     font-size: 0.3rem;
   }

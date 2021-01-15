@@ -22,7 +22,6 @@ export default {
 <style lang="scss" scoped>
 #lx_cont {
   width: 100%;
-  height: 100%;
   padding: 0.2rem;
   .wrapper {
     width: 100%;
