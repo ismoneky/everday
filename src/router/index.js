@@ -76,6 +76,10 @@ const routes = [{
     path: '/balance',
     name: 'balance',
     component: () => import('../views/profile/balance.vue')
+  }, {
+    path: '/mycollection',
+    name: 'mycollection',
+    component: () => import('../views/profile/mycollection.vue')
   }
 ]
 
