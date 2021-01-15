@@ -21,10 +21,35 @@ const routes = [
 
     ]
   },
+  
   {
     path: '/practice',  //练习页面
     name: 'practice ',
     component: () => import('../views/Practice/practice.vue'),
+    children:[
+      
+    ]
+  },
+  {
+    path: '/kdzl',   //考点专练页面
+    name: 'kdzl',
+    component: () => import('../views/Practice/lxs/kdzl.vue'),
+    children:[
+
+    ]
+  },
+  {
+    path: '/tjlx',   //套卷练习页面
+    name: 'tjlx',
+    component: () => import('../views/Practice/lxs/tjlx.vue'),
+    children:[
+
+    ]
+  },
+  {
+    path: '/tjlx2',   //套卷练习2页面
+    name: 'tjlx2',
+    component: () => import('../views/Practice/lxs/tjlx2.vue'),
     children:[
 
     ]
