@@ -15,9 +15,12 @@
               <p class="edit"><img src="/xiazai.png" alt="" /></p>
             </div>
           </section>
+            <div class="compile" @click="tocompile">
+               编辑
+            </div>
         </div>
         <div class="mine">
-          <div class="mine-item border-right">
+          <div class="mine-item border-right" @click="tomyclass">
             <p class="count">0</p>
             <p class="name">我的特色课</p>
             <p class="note">已购特色课程的学习</p>
@@ -27,7 +30,7 @@
             <p class="name">一对一辅导</p>
             <p class="note">我的一对一老师辅导</p>
           </div>
-          <div class="mine-item ">
+          <div class="mine-item " @click="tobalance">
             <p class="count">0.00</p>
             <p class="name">剩余学生币</p>
             <p class="note">我的剩余学生币</p>
@@ -131,7 +134,17 @@ export default {
     return {};
   },
   created() {},
-  methods: {},
+  methods: {
+    tocompile(){
+      this.$router.push('/compile')
+    },
+    tomyclass(){
+      this.$router.push('/myclass')
+    },
+    tobalance(){
+      this.$router.push('/balance')
+    }
+  },
 };
 </script>
 
@@ -141,7 +154,6 @@ export default {
   height: 100%;
   overflow: hidden;
   overflow-y: auto;
-  padding-bottom: 1.4rem;
 }
 .header {
   width: 100%;
@@ -213,6 +225,21 @@ export default {
           }
         }
       }
+    }
+    .compile{
+      width: 1rem;
+      height: 0.5rem;
+      background-color: #eb6100;
+      border-top-left-radius: 0.5rem;
+      border-bottom-left-radius: 0.5rem;
+      color: white;
+      font-size: 0.28rem;
+      position: absolute;
+      line-height: 0.5rem;
+      top: 50%;
+      margin-top: -0.25rem;
+      right: 0;
+      text-align: center;
     }
   }
   .mine {

@@ -14,31 +14,29 @@ const routes = [
     ]
   }, 
   {
-    path: '/record',   //课程页面
-    name: 'record',
-    component: () => import('../views/record/record.vue'),
-    children:[
-
-    ]
+    path:'/compile',  //编辑页面  zzw
+    name:'compile',
+    component:() => import('../views/profile/compile.vue')
   },
   {
-    path: '/practice',  //练习页面
-    name: 'practice ',
-    component: () => import('../views/Practice/practice.vue'),
-    children:[
-
-    ]
+    path:'/changename', //修改name页面  zzw
+    name:'changename',
+    component:() => import('../views/profile/changename.vue')
   },
   {
-    path:'/feature',  //特色课程页面
-    name:'feature',
-    component :() => import('../views/Courses/feature.vue')
-  },
-  {
-    path: '/myprofile',  // 个人中心页面
-    name: "myprofile",
-    component: () => import('../views/profile/Myprofile.vue')
-  },
+    path:'/changesex', //修改sex页面  zzw
+    name:'changesex',
+    component:() => import('../views/profile/changesex.vue')
+  },{
+    path:'/myclass',
+    name:'myclass',
+    component:() => import('../views/profile/myclass.vue')
+  }
+  ,{
+    path:'/balance',
+    name:'balance',
+    component:() => import('../views/profile/balance.vue')
+  }
   
 ]
 
