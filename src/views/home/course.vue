@@ -203,7 +203,7 @@ export default {
         .van-icon {
           color: black;
         }
-        deep .red {
+        /deep/ .red {
           color: orangered;
         }
       }
