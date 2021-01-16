@@ -25,9 +25,16 @@
 </template>
 <script>
 import { Icon } from "vant";
+
 export default {
   data() {
-    return {};
+    return {
+
+    };
+    
+  },
+  created() {
+   
   },
 };
 </script>

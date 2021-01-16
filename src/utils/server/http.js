@@ -1,7 +1,7 @@
 import axios from 'axios'
 
 const server = axios.create({
-    baseURL: 'https://api.it120.cc',
+    baseURL: '/api/app/',
     timeout: 10000, // 请求超时的时间
     headers: {
         'content-type': 'application/x-www-form-urlencoded'
@@ -23,9 +23,7 @@ server.interceptors.request.use(config => {
 // res 服务器返回的数据信息
 server.interceptors.response.use(res => {
     if (res.data.msg == "当前登录token无效，请重新登录") {
-        Vue.$loading.hide()
     } else {
-        Vue.$loading.hide()
         return res
     }
 }, err => {

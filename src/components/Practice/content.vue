@@ -20,9 +20,8 @@ export default {
     };
   },
   created() {
-    this.$axios.get('/api/app/banner').then(res=>{
-      console.log(res);
-    })
+
+
   },
   methods: {
     
