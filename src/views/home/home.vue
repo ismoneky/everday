@@ -4,20 +4,6 @@
     <swiper></swiper>
     <!-- 种类组件 -->
     <kinds></kinds>
-    <!-- 标题组件 -->
-    <titles title="名师阵容"></titles>
-    <!-- 讲师组件 -->
-    <teacher></teacher>
-    <!-- 标题组件 -->
-    <titles title="精品课程"></titles>
-    <!-- 课程组件 -->
-    <course></course>
-    <!-- 标题组件 -->
-    <titles title="推荐课程"></titles>
-    <!-- 课程组件 -->
-    <course></course>
-    <!-- 标题组件 -->
-    <titles title="明星讲师"></titles>
     <!-- 讲师组件 -->
     <teacher></teacher>
     <!-- 弹窗 -->
@@ -38,26 +24,38 @@
   </div>
 </template>
 <script>
+import { getHome } from "../../utils/api";
 import swiper from "../../components/home/swiper";
 import kinds from "../../components/home/kinds";
 import teacher from "@/components/home/teacher";
-import titles from "../../components/home/title";
-import course from "@/components/home/course";
+
 export default {
   components: {
     swiper,
     kinds,
     teacher,
-    titles,
-    course,
   },
   data() {
-    return {};
+    return {
+      list1: [],
+      list2: [],
+      list3: [],
+      list4: [],
+      list: [],
+      obj: {
+        name: "小黑",
+      },
+    };
   },
-  mounted() {
+  created() {
     this.yingcang();
   },
   methods: {
+    async fn() {
+      let { data } = await getHome();
+      console.log(data);
+      this.list = data;
+    },
     yingcang() {
       let show = "false";
       this.$store.commit("teashow", show);
