@@ -128,12 +128,21 @@
 </template>
 
 <script>
+import {getbanner, getHome} from '../../utils/api/index'
 export default {
   name: "Myprofile",
   data() {
     return {};
   },
-  created() {},
+  created() {
+    getbanner().then(res=>{
+      console.log(res);
+    })
+    getHome().then(res =>{
+      console.log(res);
+    })
+
+  },
   methods: {
     tocompile(){
       this.$router.push('/compile')
