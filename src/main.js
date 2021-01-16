@@ -6,7 +6,6 @@ import './assets/css/reset.css'
 import './assets/css/common.css'
 import './assets/js/rem'
 import axios from 'axios';
-Vue.prototype.$axios=axios
 import Vant from 'vant';
 import 'vant/lib/index.css';
 Vue.use(Vant);
