@@ -1,10 +1,9 @@
 import axios from 'axios'
 
 const server = axios.create({
-    baseURL: '/api/app',
+    baseURL: 'http://120.53.31.103:84/api/app',
     timeout: 10000, // 请求超时的时间
     headers: {
-        'content-type': 'application/x-www-form-urlencoded',
         "deviceType":"H5"
     }
 })

@@ -73,18 +73,22 @@ const routes = [{
     component: () => import('../views/profile/changesex.vue')
   },
   {
-    path: '/myclass',
+    path: '/myclass',  //我的课程页面
     name: 'myclass',
     component: () => import('../views/profile/myclass.vue')
   },
   {
-    path: '/balance',
+    path: '/balance', // 我的余额页面
     name: 'balance',
     component: () => import('../views/profile/balance.vue')
   }, {
-    path: '/mycollection',
+    path: '/mycollection',  //我的收藏页面
     name: 'mycollection',
     component: () => import('../views/profile/mycollection.vue')
+  },{
+    path:'/login', //登录页面
+    name:'login',
+    component:() => import('../views/login/thelogin.vue')
   }
 ]
 

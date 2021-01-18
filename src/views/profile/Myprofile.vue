@@ -11,7 +11,9 @@
               </div>
             </div>
             <div class="extra">
-              <p class="name">17639204705</p>
+              <p class="name">17639204705
+                <span >{{}}</span>
+              </p>
               <p class="edit"><img src="/xiazai.png" alt="" /></p>
             </div>
           </section>
