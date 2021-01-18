@@ -25,9 +25,18 @@
 </template>
 <script>
 import { Icon } from "vant";
+import {getTeachers} from '../../utils/api/index'
 export default {
   data() {
-    return {};
+    return {
+
+    };
+    
+  },
+  created() {
+    getTeachers().then(res=>{
+      console.log(res);
+    })
   },
 };
 </script>

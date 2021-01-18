@@ -7,11 +7,11 @@
         </van-dropdown-menu>
       </div>
       <div class="right">
-        <div class="gg">
+        <div class="gg" @click="gogg">
           <van-icon name="notes-o" />
           <span>巩固错题</span>
         </div>
-        <div class="yc">
+        <div class="yc" @click="del">
           <van-icon name="todo-list-o" />
           <span>移除错题</span>
         </div>
@@ -21,6 +21,7 @@
 </template>
 <script>
 import { DropdownMenu, DropdownItem } from "vant";
+import { Dialog } from 'vant';
 export default {
   data() {
     return {
@@ -32,6 +33,22 @@ export default {
         { text: "仿真模考", value: 3 },
       ],
     };
+  },
+  methods: {
+    gogg(){
+      this.$router.push('/ggct')
+    },
+    del(){
+      Dialog.confirm({
+  message: '是否做对题目后自动移除该错题',
+})
+  .then(() => {
+    // on confirm
+  })
+  .catch(() => {
+    // on cancel
+  });
+    }
   },
 };
 </script>

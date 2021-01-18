@@ -13,9 +13,18 @@ const routes = [{
     ]
   },
   {
-    path: '/course', //精品课程、推荐课程
-    name: 'course',
-    component: () => import('../views/home/course.vue')
+    path: '/ss', //搜索页面 lyx
+    name: 'ss',
+    component: () => import('../views/sousuo.vue')
+  }, {
+    path: '/teaDetail', //老师详情
+    name: 'teaDetail',
+    component: () => import('../views/home/teaDetail.vue')
+  },
+  {
+    path: '/hotDetail', //热门咨询详情页
+    name: 'hotDetail',
+    component: () => import('../views/home/hotDetail.vue')
   },
   {
     path: '/compile', //编辑页面  zzw
@@ -28,27 +37,42 @@ const routes = [{
     component: () => import('../views/profile/changename.vue')
   },
   {
-    path: '/kdzl', //考点专练页面
+    path: '/kdzl', //考点专练页面 lyx
     name: 'kdzl',
     component: () => import('../views/Practice/lxs/kdzl.vue'),
   },
   {
-    path: '/tjlx', //套卷练习页面
+    path: '/tjlx', //套卷练习页面  lyx
     name: 'tjlx',
     component: () => import('../views/Practice/lxs/tjlx.vue'),
   },
   {
-    path: '/tjlx2', //套卷练习2页面
+    path: '/tjlx2', //套卷练习2页面 lyx
     name: 'tjlx2',
     component: () => import('../views/Practice/lxs/tjlx2.vue'),
   },
   {
-    path: '/ctjl', //套卷练习2页面
+    path: '/ctjl', //错题记录页面 lyx
     name: 'ctjl',
     component: () => import('../views/Practice/lxs/ctjl.vue'),
   },
   {
-    path: '/feature', //特色课程页面
+    path: '/xtsc', //习题收藏页面 lyx
+    name: 'xtsc',
+    component: () => import('../views/Practice/lxs/xtsc.vue'),
+  },
+  {
+    path: '/cpjl', //测评记录页面 lyx
+    name: 'cpjl',
+    component: () => import('../views/Practice/lxs/cpjl.vue'),
+  },
+  {
+    path: '/ggct', //巩固错题页面 lyx
+    name: 'ggct',
+    component: () => import('../views/Practice/lxs/ggct.vue'),
+  },
+  {
+    path: '/feature', //特色课程页面 lyx
     name: 'feature',
     component: () => import('../views/Courses/feature.vue')
   },
@@ -56,11 +80,6 @@ const routes = [{
     path: '/myprofile', // 个人中心页面
     name: "myprofile",
     component: () => import('../views/profile/Myprofile.vue')
-  },
-  {
-    path: '/feature', //特色课程页面
-    name: 'feature',
-    component: () => import('../views/Courses/feature.vue')
   },
   {
     path: '/changesex', //修改sex页面  zzw

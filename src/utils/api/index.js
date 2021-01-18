@@ -1,21 +1,27 @@
 import server from '../server/http'
 
 // banner轮播图
-const getbanner = async function () {
-    var {
-        data
-    } = await server.get('/banner')
-    return data
-}
-
+export const getbanner = () => server.get('/banner')
 // 首页列表
-const getHome = async function () {
-    var {
-        data
-    } = await server.get('/recommend/appIndex')
-    return data
-}
+export const getHome = () => server.get('/recommend/appIndex')
+// 老师详情
+export const getTeaDetail = (id) => server.get(`/teacher/info?id=${id}`)
+// 老师介绍
+export const getInce = (id) => server.get(`/teacher?id=${id}`)
+// 主讲课程
+export const getMain = (id) => server.post(`/teacher/mainCourse`, {
+    teacher_id: id,
+    limit: 10,
+    page: 1
+})
+// 老师关注与取消关注
+export const getCollect = (id) => server.get(`/teacher/collect?teacher_id=${id}`)
+// 热门咨询详情页
+export const getHotDetail = (id) => server.post(`/information/detail`, {
+    information_id: id,
+})
 
+<<<<<<< HEAD
 export const getLogin = (obj) => server.post('/login', obj)       //登录接口
 export const getprofile = () => server.get('/userInfo')           //个人信息获取接口
 export const getuserinfo = (obj) => server.put('/user',obj)       //个人信息修改页面
@@ -28,9 +34,10 @@ const getTeaDetail = async function (id) {
     } = await server.get(`/teacher/info/id=${id}`)
     return data
 }
+=======
+export const getLogin = (obj) => server.post('/login', obj) //登录接口
 
-export {
-    getbanner, //轮播图
-    getHome, //首页列表
-    getTeaDetail, //老师详情
-}
+>>>>>>> 3f2315e12aa69c92ecc449cec9a22741c6c98e53
+
+export const getTeachers = () => server.get('myStudy/2') //特色课
+  

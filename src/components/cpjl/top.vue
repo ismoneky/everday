@@ -1,6 +1,6 @@
 <template>
-  <div id="tjlx_top">
-   <van-nav-bar title="套卷练习" left-text="" :left-arrow='true'
+  <div id="cp_top">
+   <van-nav-bar title="测评记录" left-text="" :left-arrow='true'
      @click-left="onClickLeft"
    >
   <template #right>
@@ -18,7 +18,7 @@ export default {
     };
   },
   methods: {
-    goss(){
+        goss(){
       this.$router.push('/ss')
     },
     onClickLeft(){
@@ -28,7 +28,7 @@ export default {
 };
 </script>
 <style lang="scss" scoped>
-#tjlx_top {
+#cp_top {
   /deep/.van-ellipsis {
     font-size: 4.8vw;
   }

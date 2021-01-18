@@ -10,7 +10,7 @@
           <p>提交时间：2020/10/28 15:16:53</p>
         </div>
         <div class="wz_three">
-          <button class="btn">巩固错题</button>
+          <button class="btn" @click="goct">巩固错题</button>
         </div>
       </div>
     </div>
@@ -21,6 +21,11 @@
 export default {
   data() {
     return {};
+  },
+  methods: {
+    goct(){
+       this.$router.push('/ggct')
+    }
   },
 };
 </script>
