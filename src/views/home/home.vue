@@ -51,11 +51,11 @@ export default {
     this.yingcang();
   },
   methods: {
-    async fn() {
-      let { data } = await getHome();
-      console.log(data);
-      this.list = data;
-    },
+    // async fn() {
+    //   let { data } = await getHome();
+    //   console.log(data);
+    //   this.list = data;
+    // },
     yingcang() {
       let show = "false";
       this.$store.commit("teashow", show);

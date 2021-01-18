@@ -13,9 +13,14 @@ const routes = [{
     ]
   },
   {
-    path: '/course', //精品课程、推荐课程
-    name: 'course',
-    component: () => import('../views/home/course.vue')
+    path: '/teaDetail', //老师详情
+    name: 'teaDetail',
+    component: () => import('../views/home/teaDetail.vue')
+  },
+  {
+    path: '/hotDetail', //热门咨询详情页
+    name: 'hotDetail',
+    component: () => import('../views/home/hotDetail.vue')
   },
   {
     path: '/compile', //编辑页面  zzw

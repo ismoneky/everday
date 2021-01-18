@@ -14,13 +14,22 @@ export default {
     };
   },
   mounted() {
-    getbanner().then((res) => {
-      // console.log(res);
-      this.list = res.data;
-      // console.log(this.list);
-    });
+    // getbanner().then((res) => {
+    //   // console.log(res);
+    //   this.list = res.data;
+    //   // console.log(this.list);
+    // });
+    this.fn();
   },
-  methods: {},
+  methods: {
+    async fn() {
+      let { data } = await getbanner();
+      console.log(data);
+      if (data.code === 200) {
+        this.list = data.data;
+      }
+    },
+  },
 };
 </script>
 <style lang="scss" scoped>

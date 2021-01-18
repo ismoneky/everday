@@ -1,5 +1,5 @@
 <template>
-  <div class="title">
+  <div class="title border-bottom">
     <p>{{ title }}</p>
   </div>
 </template>
@@ -20,7 +20,6 @@ export default {
   display: flex;
   align-items: center;
   justify-content: center;
-  border-bottom: 0.5px solid gray;
   background: #fff;
   p {
     font-size: 0.3rem;
