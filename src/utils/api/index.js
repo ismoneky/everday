@@ -1,5 +1,6 @@
 import server from '../server/http'
 
+// banner轮播图
 const getbanner = async function () {
     var {
         data
@@ -7,6 +8,7 @@ const getbanner = async function () {
     return data
 }
 
+// 首页列表
 const getHome = async function () {
     var {
         data
@@ -14,13 +16,18 @@ const getHome = async function () {
     return data
 }
 
-// const getLogin =async function(obj){
-//     console.log(obj);
-//     var {data} = await server.post('/login',obj)
-//     return data
-// }
-export const getLogin = (obj) => server.post('/login', obj)
+export const getLogin = (obj) => server.post('/login', obj) //登录接口
+
+// 老师详情
+const getTeaDetail = async function (id) {
+    var {
+        data
+    } = await server.get(`/teacher/info/id=${id}`)
+    return data
+}
+
 export {
-    getbanner,
-    getHome,
+    getbanner, //轮播图
+    getHome, //首页列表
+    getTeaDetail, //老师详情
 }

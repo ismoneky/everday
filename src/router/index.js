@@ -13,11 +13,6 @@ const routes = [{
     ]
   },
   {
-    path: 'teaList', //名师阵容、明星讲师
-    name: 'teaList',
-    component: () => import('../views/home/teaList.vue')
-  },
-  {
     path: '/course', //精品课程、推荐课程
     name: 'course',
     component: () => import('../views/home/course.vue')
