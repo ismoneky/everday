@@ -13,6 +13,7 @@ const routes = [{
     ]
   },
   {
+<<<<<<< HEAD
     path: '/ss', //搜索页面 lyx
     name: 'ss',
     component: () => import('../views/sousuo.vue')
@@ -21,6 +22,16 @@ const routes = [{
     path: '/course', //精品课程、推荐课程
     name: 'course',
     component: () => import('../views/home/course.vue')
+=======
+    path: '/teaDetail', //老师详情
+    name: 'teaDetail',
+    component: () => import('../views/home/teaDetail.vue')
+  },
+  {
+    path: '/hotDetail', //热门咨询详情页
+    name: 'hotDetail',
+    component: () => import('../views/home/hotDetail.vue')
+>>>>>>> e45f57e42d99309d428c39a2a4ee9798f0847242
   },
   {
     path: '/compile', //编辑页面  zzw
