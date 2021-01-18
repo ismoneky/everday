@@ -3,8 +3,8 @@
     <!-- tit;e -->
     <div class="title">
       <div class="title_left">
-        <img :src="$route.query.item.teacher_avatar" alt="" />
-        <span>{{ $route.query.item.teacher_name }}</span>
+        <img :src="item.teacher_avatar" alt="" />
+        <span>{{ item.teacher_name }}</span>
       </div>
       <div class="title_right">
         <p @click="guanzhu">
@@ -31,7 +31,7 @@
     <!-- 老师简介 -->
     <div class="introduce" v-if="show">
       <div class="tea_user">老师简介</div>
-      <div class="ince">{{ $route.query.item.introduction }}</div>
+      <div class="ince">{{ item.introduction }}</div>
     </div>
     <div class="curriculum" v-else></div>
   </div>
@@ -53,8 +53,8 @@ export default {
       ],
       active: 0,
       show: true,
-      id: Number(this.$route.query.id),
-      data: localStorage.getItem('guanzhu')||"关注",
+      item: this.$route.query.item,
+      data: localStorage.getItem("guanzhu") || "关注",
     };
   },
   mounted() {
@@ -73,7 +73,7 @@ export default {
         Toast("已关注");
         this.data = "取消关注";
       }
-      localStorage.setItem('guanzhu',this.data)
+      localStorage.setItem("guanzhu", this.data);
       getCollect(this.$route.query.id).then((res) => {
         console.log(res);
       });

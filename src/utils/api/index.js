@@ -15,10 +15,11 @@ export const getMain = (id) => server.post(`/teacher/mainCourse`, {
     page: 1
 })
 // 老师关注与取消关注
-export const getCollect = (id) => server.get(`/teacher/collect?type=${id}`)
+export const getCollect = (id) => server.get(`/teacher/collect?teacher_id=${id}`)
 // 热门咨询详情页
 export const getHotDetail = (id) => server.post(`/information/detail`, {
     information_id: id,
 })
 
 export const getLogin = (obj) => server.post('/login', obj) //登录接口
+
