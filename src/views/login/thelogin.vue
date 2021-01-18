@@ -53,7 +53,7 @@ export default {
     return {
       userobj: {
         mobile: "15810195203",
-        password: "66666666",
+        password: "6666666666",
         type: 1,
       },
     };
@@ -64,18 +64,19 @@ export default {
   created() {},
   methods: {
     async tologin() {
-        console.log(111);
       var ref = /^(?:(?:\+|00)86)?1(?:(?:3[\d])|(?:4[5-7|9])|(?:5[0-3|5-9])|(?:6[5-7])|(?:7[0-8])|(?:8[\d])|(?:9[1|8|9]))\d{8}$/;
+
       if (this.userobj.mobile.match(ref)) {
         let { data } = await getLogin(this.userobj);
-        console.log(data);
+
         if (data.code === 200) {
+
           localStorage.setItem("token", data.data.remember_token);
-          this.$store.commit("loginStore/setUser", data.data);
-          //   this.$router.push('/')
+          this.$router.push('/')
+
         }
       } else {
-        Toast.fail("手机号不正确");
+        Toast.fail("请输入正确手机号");
       }
     },
   },

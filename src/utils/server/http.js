@@ -1,17 +1,19 @@
 import axios from 'axios'
+import Vue from 'vue'
+// import loading from '@/components/loading'
 
 const server = axios.create({
     baseURL: 'http://120.53.31.103:84/api/app',
     timeout: 10000, // 请求超时的时间
     headers: {
-        "deviceType":"H5"
+        "deviceType": "H5"
     }
 })
-
 // 请求拦截
 server.interceptors.request.use(config => {
+    Vue.$loading.show()
     if (localStorage.getItem('token')) {
-        config.headers.token = localStorage.getItem('token')
+        config.headers.Authorization =`Bearer ${localStorage.getItem('token')}` 
     }
     return config
 }, err => {
@@ -21,8 +23,8 @@ server.interceptors.request.use(config => {
 // 响应拦截
 // res 服务器返回的数据信息
 server.interceptors.response.use(res => {
-    if (res.data.msg == "当前登录token无效，请重新登录") {
-    } else {
+    Vue.$loading.hide()
+    if (res.data.msg == "当前登录token无效，请重新登录") {} else {
         return res
     }
 }, err => {

@@ -44,7 +44,7 @@ export default {
   font-size: 0.24rem;
   margin-top: -.6rem;
   position: relative;
-  z-index: 99;
+  // z-index: 29;
   ul {
     width: 100%;
     display: flex;

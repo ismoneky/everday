@@ -7,8 +7,11 @@ import './assets/css/common.css'
 import './assets/js/rem'
 import Vant from 'vant';
 import 'vant/lib/index.css';
+import loading from '@/components/loading/index.js'
+Vue.use(loading)
 
 Vue.use(Vant);
+
 
 Vue.config.productionTip = false
 

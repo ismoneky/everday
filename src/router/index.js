@@ -65,30 +65,61 @@ const routes = [{
   {
     path: '/changesex', //修改sex页面  zzw
     name: 'changesex',
+    meta: {
+      isLogin: true
+    },
     component: () => import('../views/profile/changesex.vue')
   },
   {
-    path: '/myclass',  //我的课程页面
+    path: '/myclass', //我的课程页面
     name: 'myclass',
     component: () => import('../views/profile/myclass.vue')
   },
   {
     path: '/balance', // 我的余额页面
     name: 'balance',
+    meta: {
+      isLogin: true
+    },
     component: () => import('../views/profile/balance.vue')
   }, {
-    path: '/mycollection',  //我的收藏页面
+    path: '/mycollection', //我的收藏页面
     name: 'mycollection',
+    meta: {
+      isLogin: true
+    },
+    meta: {
+      isLogin: true
+    },
     component: () => import('../views/profile/mycollection.vue')
-  },{
-    path:'/login', //登录页面
-    name:'login',
-    component:() => import('../views/login/thelogin.vue')
+  }, {
+    path: '/login', //登录页面
+    name: 'login',
+    component: () => import('../views/login/thelogin.vue')
   }
 ]
 
 const router = new VueRouter({
   routes
 })
+
+
+//登录鉴权，判断有没有登录
+router.beforeEach((to, from, next) => {
+  if (to.matched.some(record => record.meta.isLogin)) {
+    if (!localStorage.getItem('token')) {
+      next({
+        path: '/login',
+      })
+    } else {
+      next()
+    }
+  } else {
+    next() // 确保一定要调用 next()
+  }
+})
+
+
+
 
 export default router

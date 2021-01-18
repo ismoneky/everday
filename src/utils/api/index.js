@@ -16,8 +16,11 @@ const getHome = async function () {
     return data
 }
 
-export const getLogin = (obj) => server.post('/login', obj) //登录接口
-
+export const getLogin = (obj) => server.post('/login', obj)       //登录接口
+export const getprofile = () => server.get('/userInfo')           //个人信息获取接口
+export const getuserinfo = (obj) => server.put('/user',obj)       //个人信息修改页面
+export const getcity = () => server.get('sonArea/0')              //获取城市数据
+export const getcollect = (obj) => server.get('/collect' + `?page=${obj.page}` + `&limit=${obj.limit}` + `&type=${obj.type}`)//获取关注数据
 // 老师详情
 const getTeaDetail = async function (id) {
     var {

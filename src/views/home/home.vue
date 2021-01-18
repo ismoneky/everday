@@ -49,6 +49,8 @@ export default {
   },
   created() {
     this.yingcang();
+console.log(this);
+
   },
   methods: {
     async fn() {
@@ -82,7 +84,7 @@ export default {
   bottom: 0;
   left: 0;
   right: 0;
-  z-index: 999;
+  z-index: 9;
   .lialing_li {
     font-size: 0.24rem;
     text-align: center;
@@ -94,7 +96,7 @@ export default {
     width: 4rem;
     height: 4.6rem;
     margin: auto;
-    z-index: 9999;
+    z-index: 19;
     background: #fff;
     padding-top: 0.2rem;
     border-radius: 0.3rem;

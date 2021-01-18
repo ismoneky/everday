@@ -1,9 +1,11 @@
 <template>
   <div class="changename">
-      <top-nav title="修改名称"></top-nav>
+      <top-nav title="修改名称">
+       <span class="sure" @click="save">保存</span>
+      </top-nav>
       <div class="content">
         <div class="txt">
-          <input type="text">
+          <input type="text" v-model="obj.nickname">
         </div>
       </div>
  </div> 
@@ -11,19 +13,28 @@
 
 <script>
 import topNav from '@/components/topNav'
+import {getuserinfo} from '../../utils/api'
+import server from '../../utils/server/http'
 export default {
   components: { topNav },
   name: 'changename',
   data() { 
     return {
-
+      obj:{
+        nickname:''
+      }
     }
   },
   created() {
 
   },
+  computed:{
+  },
   methods:{
-
+    async save(){
+      let {data} = await getuserinfo(this.obj)
+      this.$router.back()
+    }
   },
  }
 </script>
@@ -50,5 +61,9 @@ export default {
       border: none;
     }
   }
+}
+.sure{
+  color: blue;
+  font-size: 0.28rem;
 }
 </style>
