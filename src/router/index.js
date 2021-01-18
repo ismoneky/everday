@@ -48,9 +48,14 @@ const routes = [{
     component: () => import('../views/Practice/lxs/tjlx2.vue'),
   },
   {
-    path: '/ctjl', //套卷练习2页面
+    path: '/ctjl', //错题记录页面
     name: 'ctjl',
     component: () => import('../views/Practice/lxs/ctjl.vue'),
+  },
+  {
+    path: '/ggct', //巩固错题页面
+    name: 'ggct',
+    component: () => import('../views/Practice/lxs/ggct.vue'),
   },
   {
     path: '/feature', //特色课程页面

@@ -1,16 +1,16 @@
 import axios from 'axios'
 
 const server = axios.create({
-    baseURL: '/api/app/',
+    baseURL: '/api/app',
     timeout: 10000, // 请求超时的时间
     headers: {
-        'content-type': 'application/x-www-form-urlencoded'
+        'content-type': 'application/x-www-form-urlencoded',
+        "deviceType":"H5"
     }
 })
 
 // 请求拦截
 server.interceptors.request.use(config => {
-    Vue.$loading.show()
     if (localStorage.getItem('token')) {
         config.headers.token = localStorage.getItem('token')
     }
