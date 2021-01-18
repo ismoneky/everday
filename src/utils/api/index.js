@@ -23,20 +23,6 @@ export const getHotDetail = (id) => server.post(`/information/detail`, {
 
 export const getLogin = (obj) => server.post('/login', obj) //登录接口
 
-<<<<<<< HEAD
-// 老师详情
-const getTeaDetail = async function (id) {
-    var {
-        data
-    } = await server.get(`/teacher/info/id=${id}`)
-    return data
-}
-export const getTeachers = () => server.get('myStudy/2') //特色课
 
-export {
-    getbanner, //轮播图
-    getHome, //首页列表
-    getTeaDetail, //老师详情
-}   
-=======
->>>>>>> e45f57e42d99309d428c39a2a4ee9798f0847242
+export const getTeachers = () => server.get('myStudy/2') //特色课
+  
