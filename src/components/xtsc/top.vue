@@ -1,21 +1,20 @@
 <template>
-  <div id="tjlx_top">
-   <van-nav-bar title="套卷练习" left-text="" :left-arrow='true'
-     @click-left="onClickLeft"
-   >
-  <template #right>
+  <div id="xt_top">
+    <van-nav-bar title="习题收藏" left-text="" right-text="" :left-arrow="true" 
+      @click-left="onClickLeft"
+    >
+    <template #right>
     <van-icon name="search" size="20" @click="goss" />
   </template>
-</van-nav-bar>
+    </van-nav-bar>
+    
   </div>
 </template>
 <script>
 import { NavBar } from "vant";
 export default {
   data() {
-    return {
-
-    };
+    return {};
   },
   methods: {
     goss(){
@@ -28,7 +27,7 @@ export default {
 };
 </script>
 <style lang="scss" scoped>
-#tjlx_top {
+#xt_top {
   /deep/.van-ellipsis {
     font-size: 4.8vw;
   }

@@ -13,9 +13,9 @@ const routes = [{
     ]
   },
   {
-    path: 'teaList', //名师阵容、明星讲师
-    name: 'teaList',
-    component: () => import('../views/home/teaList.vue')
+    path: '/ss', //搜索页面 lyx
+    name: 'ss',
+    component: () => import('../views/sousuo.vue')
   },
   {
     path: '/course', //精品课程、推荐课程
@@ -33,32 +33,42 @@ const routes = [{
     component: () => import('../views/profile/changename.vue')
   },
   {
-    path: '/kdzl', //考点专练页面
+    path: '/kdzl', //考点专练页面 lyx
     name: 'kdzl',
     component: () => import('../views/Practice/lxs/kdzl.vue'),
   },
   {
-    path: '/tjlx', //套卷练习页面
+    path: '/tjlx', //套卷练习页面  lyx
     name: 'tjlx',
     component: () => import('../views/Practice/lxs/tjlx.vue'),
   },
   {
-    path: '/tjlx2', //套卷练习2页面
+    path: '/tjlx2', //套卷练习2页面 lyx
     name: 'tjlx2',
     component: () => import('../views/Practice/lxs/tjlx2.vue'),
   },
   {
-    path: '/ctjl', //错题记录页面
+    path: '/ctjl', //错题记录页面 lyx
     name: 'ctjl',
     component: () => import('../views/Practice/lxs/ctjl.vue'),
   },
   {
-    path: '/ggct', //巩固错题页面
+    path: '/xtsc', //习题收藏页面 lyx
+    name: 'xtsc',
+    component: () => import('../views/Practice/lxs/xtsc.vue'),
+  },
+  {
+    path: '/cpjl', //测评记录页面 lyx
+    name: 'cpjl',
+    component: () => import('../views/Practice/lxs/cpjl.vue'),
+  },
+  {
+    path: '/ggct', //巩固错题页面 lyx
     name: 'ggct',
     component: () => import('../views/Practice/lxs/ggct.vue'),
   },
   {
-    path: '/feature', //特色课程页面
+    path: '/feature', //特色课程页面 lyx
     name: 'feature',
     component: () => import('../views/Courses/feature.vue')
   },
@@ -68,28 +78,27 @@ const routes = [{
     component: () => import('../views/profile/Myprofile.vue')
   },
   {
-    path: '/feature', //特色课程页面
-    name: 'feature',
-    component: () => import('../views/Courses/feature.vue')
-  },
-  {
     path: '/changesex', //修改sex页面  zzw
     name: 'changesex',
     component: () => import('../views/profile/changesex.vue')
   },
   {
-    path: '/myclass',
+    path: '/myclass',  //我的课程页面
     name: 'myclass',
     component: () => import('../views/profile/myclass.vue')
   },
   {
-    path: '/balance',
+    path: '/balance', // 我的余额页面
     name: 'balance',
     component: () => import('../views/profile/balance.vue')
   }, {
-    path: '/mycollection',
+    path: '/mycollection',  //我的收藏页面
     name: 'mycollection',
     component: () => import('../views/profile/mycollection.vue')
+  },{
+    path:'/login', //登录页面
+    name:'login',
+    component:() => import('../views/login/thelogin.vue')
   }
 ]
 

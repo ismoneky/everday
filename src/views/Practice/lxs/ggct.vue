@@ -5,9 +5,10 @@
         <van-icon name="arrow-left" size="24" @click="goback" />
       </div>
       <div class="right">
-        <van-icon name="comment-o" size="24" />
-        <van-icon name="star-o" size="24" />
-        <van-icon name="records" size="24" />
+        <van-icon name="comment-o" size="24" @click="show = true" />
+        <span v-if="colors"><van-icon name="star-o" size="24" @click="tabcolor"/></span>
+        <span v-else><van-icon name="star" color="red" size="24" @click="tabcolor"/></span>
+        <van-icon name="records" size="24" @click="shows = true" />
       </div>
     </div>
     <div class="tab">
@@ -57,7 +58,6 @@
             name="friends"
             color="#0097fa"
             class="tb"
-            
           />查看答案</van-button
         >
       </div>
@@ -78,20 +78,92 @@
         <p>解析：<span>暂无解析</span></p>
       </div>
     </div>
+    <van-popup
+      v-model="show"
+      position="right"
+      :style="{ width: '100%', height: '100%' }"
+    >
+      <van-nav-bar
+        title="答题卡"
+        left-text=""
+        right-text=""
+        left-arrow
+        @click-left="onClickLeft"
+      />
+      <div class="tab">
+        <div class="left">物理学史</div>
+        <div class="right">
+          <p><span>1</span>/7</p>
+        </div>
+      </div>
+      <div class="xxk">
+        <ul>
+          <li>1</li>
+          <li>2</li>
+          <li>3</li>
+          <li>4</li>
+          <li>5</li>
+          <li>6</li>
+        </ul>
+      </div>
+    </van-popup>
+    <van-popup
+      v-model="shows"
+      position="right"
+      :style="{ width: '100%', height: '100%' }"
+    >
+      <van-nav-bar
+        title="题目纠错反馈"
+        left-text=""
+        right-text=""
+        left-arrow
+        @click-left="onClickLefts"
+      />
+      <div class="jclx">
+        <p class="p">纠错类型：</p>
+
+        <p>
+          <input type="radio" name="a" />错别字
+          <input type="radio" name="a" />答案解析不匹配
+          <input type="radio" name="a" />解析错误
+          <input type="radio" name="a" />其他
+        </p>
+      </div>
+      <div class="yj">
+        <textarea name="" id="" cols="13" rows="3"></textarea>
+        <p>
+          <input type="button" value="提交" class="btn" />
+        </p>
+      </div>
+    </van-popup>
   </div>
 </template>
 <script>
 import { Button } from "vant";
 import { Dialog } from "vant";
+import { Popup } from "vant";
+import { NavBar } from "vant";
 export default {
   data() {
     return {
       flag: false,
+      show: false,
+      shows: false,
+      colors:true
     };
   },
   methods: {
+    tabcolor(){
+      this.colors=!this.colors
+    },
+    onClickLeft() {
+      this.show = false;
+    },
+    onClickLefts() {
+      this.shows = false;
+    },
     goback() {
-      this.$router.push("/ctjl");
+      this.$router.go(-1);
     },
     del() {
       Dialog.confirm({
@@ -105,7 +177,7 @@ export default {
         });
     },
     getflag() {
-      this.flag=!this.flag
+      this.flag = !this.flag;
     },
   },
 };
@@ -254,13 +326,56 @@ export default {
           border-radius: 0.25rem;
           color: #fff;
           margin: 0 0.15rem;
-          margin-bottom: .15rem;
-          
+          margin-bottom: 0.15rem;
         }
       }
     }
-    .bot_three{
-      font-size: .13rem;
+    .bot_three {
+      font-size: 0.13rem;
+    }
+  }
+  .xxk {
+    ul {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      padding: 0.2rem;
+      li {
+        width: 0.8rem;
+        height: 0.8rem;
+        text-align: center;
+        font-size: 0.3rem;
+        line-height: 0.8rem;
+        border: 1px solid #eaeaea;
+        border-radius: 50%;
+        color: #b8b8b8;
+        margin-top: 0.4rem;
+        margin-right: 0.4rem;
+      }
+    }
+  }
+  .jclx {
+    padding: 0.2rem;
+    .p {
+      font-size: 0.28rem;
+      color: #5e5e5e;
+    }
+    p {
+      font-size: 0.24rem;
+      color: #8c8c8c;
+    }
+  }
+  .yj {
+    border-radius: 5px;
+    padding: 0.3rem;
+    box-shadow: 0px 0px 6px 0px rgb(194, 194, 194);
+    p {
+      line-height: 0rem;
+      .btn {
+        height: 0.5rem;
+        width: 1rem;
+        font-size: 0.23rem;
+      }
     }
   }
 }

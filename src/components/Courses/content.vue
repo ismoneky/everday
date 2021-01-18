@@ -25,7 +25,7 @@
 </template>
 <script>
 import { Icon } from "vant";
-
+import {getTeachers} from '../../utils/api/index'
 export default {
   data() {
     return {
@@ -34,7 +34,9 @@ export default {
     
   },
   created() {
-   
+    getTeachers().then(res=>{
+      console.log(res);
+    })
   },
 };
 </script>

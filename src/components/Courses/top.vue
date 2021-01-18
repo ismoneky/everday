@@ -2,7 +2,7 @@
   <div id="kc_top">
 <van-nav-bar title="特色课" left-text="" :left-arrow='false'>
   <template #right>
-    <van-icon name="search" size="28" />
+    <van-icon name="search" size="28" @click="goss" />
   </template>
 </van-nav-bar>
   </div>
@@ -14,6 +14,11 @@ export default {
         return {
             
         }
+    },
+    methods: {
+          goss(){
+      this.$router.push('/ss')
+    },
     },
 }
 </script>

@@ -4,7 +4,7 @@
      @click-left="onClickLeft"
    >
   <template #right>
-    <van-icon name="search" size="20" />
+    <van-icon name="search" size="20" @click="goss" />
   </template>
 </van-nav-bar>
   </div>
@@ -18,6 +18,9 @@ export default {
     };
   },
   methods: {
+        goss(){
+      this.$router.push('/ss')
+    },
     onClickLeft(){
       this.$router.push('/practice')
     }

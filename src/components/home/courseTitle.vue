@@ -1,8 +1,11 @@
 <template>
-  <div class="courseTitle border-bottom">
-    <div><van-icon name="arrow-left" @click="back" /></div>
-    <div>{{ title }}</div>
-    <div><van-icon name="cluster-o" /></div>
+  <div class="courseTitle">
+    <header>
+      <div><van-icon name="arrow-left" @click="back" /></div>
+      <div>{{ title }}</div>
+      <div></div>
+    </header>
+    <div class="bottom"></div>
   </div>
 </template>
 <script>
@@ -22,13 +25,16 @@ export default {
 </script>
 <style lang="scss" scoped>
 .courseTitle {
-  width: 100%;
-  height: 1rem;
-  font-size: 0.3rem;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 0 0.2rem;
-  background: #fff;
+  height: 2rem;
+  background: skyblue;
+  header {
+    width: 100%;
+    height: .8rem;
+    font-size: 0.3rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 0.2rem;
+  }
 }
 </style>
