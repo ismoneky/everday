@@ -9,7 +9,7 @@
         <div class="teacher">
           <ul>
             <li
-              @click="gototeaDetail(item.teacher_id, item)"
+              @click="gototeaDetail(item.teacher_id)"
               v-for="(item, index) in item.list"
               :key="index"
             >
@@ -80,10 +80,10 @@ export default {
       }
     },
     // 去老师详情页面
-    gototeaDetail(id, item) {
-      console.log(id, item);
+    gototeaDetail(id) {
+      console.log(id);
       if (localStorage.getItem("token")) {
-        this.$router.push({ path: "teaDetail", query: { id, item } });
+        this.$router.push({ path: "teaDetail", query: { id } });
       } else {
         let show = "true";
         this.$store.commit("teashow", show);
