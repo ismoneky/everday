@@ -15,18 +15,9 @@
 <script>
 export default {
   data() {
-    return {
-    };
+    return {};
   },
-<<<<<<< HEAD
-
-=======
-  created() {
-  },
->>>>>>> 04892024ff0d106ed0bab3a2c242187ccb8af70e
-  methods: {
-    
-  },
+  methods: {},
 };
 </script>
 <style lang="scss" scoped>

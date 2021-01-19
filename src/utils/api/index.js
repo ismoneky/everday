@@ -21,15 +21,11 @@ export const getHotDetail = (id) => server.post(`/information/detail`, {
     information_id: id,
 })
 
-<<<<<<< HEAD
-export const getLogin = (obj) => server.post('/login', obj)       //登录接口
-export const getprofile = () => server.get('/userInfo')           //个人信息获取接口
-export const getuserinfo = (obj) => server.put('/user',obj)       //个人信息修改页面
-export const getcity = () => server.get('sonArea/0')              //获取城市数据
-export const getcollect = (obj) => server.get('/collect' + `?page=${obj.page}` + `&limit=${obj.limit}` + `&type=${obj.type}`)//获取关注数据
-
-
-
+export const getLogin = (obj) => server.post('/login', obj) //登录接口
+export const getprofile = () => server.get('/userInfo') //个人信息获取接口
+export const getuserinfo = (obj) => server.put('/user', obj) //个人信息修改页面
+export const getcity = () => server.get('sonArea/0') //获取城市数据
+export const getcollect = (obj) => server.get('/collect' + `?page=${obj.page}` + `&limit=${obj.limit}` + `&type=${obj.type}`) //获取关注数据
 
 
 
@@ -37,10 +33,9 @@ export const getcollect = (obj) => server.get('/collect' + `?page=${obj.page}` +
 export const getTeachers = () => server.get('myStudy/2?') //特色课暂时不知道这是个啥
 export const gets = (obj) => server.get(
     `courseBasis?page=${obj.page}&limit=10&order_by=${obj.num}`
-    ) //特色课课程
-export const getlists=()=>server.get('courseClassify')   //特色课分类
-export const getsousuo=(val)=>server.get(`courseBasis?limit=10&page=1&course_type=0&keywords=${val}`)   //特色课搜索
-=======
+) //特色课课程
+export const getlists = () => server.get('courseClassify') //特色课分类
+export const getsousuo = (val) => server.get(`courseBasis?limit=10&page=1&course_type=0&keywords=${val}`) //特色课搜索
 // 课程详情
 export const getCourseDetail = (id) => server.get(`/courseInfo/basis_id=${id}?`)
 
@@ -51,7 +46,6 @@ export const getCoursedaGang = (id) => server.post(`/courseChapter`, {
 
 // 课程详情
 export const getCourseInce = (id) => server.get(`/spellGroupInfo/${id}/course?`)
-<<<<<<< HEAD
 // 课程评价
 export const getCourseComment = (id) => server.post(`/courseComment`, {
     id: id,
@@ -69,7 +63,6 @@ export const getCourseQuXiaoShouCang = (id) => server.post(`/collect/cancel`, {
     collect_id: id,
     type: 1
 })
-
 // /227/1
 // 立即报名
 export const getbaoming = (id) => server.post(`order/downOrder`, {
@@ -77,14 +70,3 @@ export const getbaoming = (id) => server.post(`order/downOrder`, {
     type: 5,
 })
 
-=======
->>>>>>> 04892024ff0d106ed0bab3a2c242187ccb8af70e
-export const getLogin = (obj) => server.post('/login', obj) //登录接口
-export const getprofile = () => server.get('/userInfo') //个人信息获取接口
-export const getuserinfo = (obj) => server.put('/user', obj) //个人信息修改页面
-export const getcity = () => server.get('sonArea/0') //获取城市数据
-export const getcollect = (obj) => server.get('/collect' + `?page=${obj.page}` + `&limit=${obj.limit}` + `&type=${obj.type}`) //获取关注数据
-
-
-export const getTeachers = () => server.get('myStudy/2') //特色课
->>>>>>> 04892024ff0d106ed0bab3a2c242187ccb8af70e
