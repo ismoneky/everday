@@ -18,7 +18,12 @@ export default {
     return {
     };
   },
+<<<<<<< HEAD
 
+=======
+  created() {
+  },
+>>>>>>> 04892024ff0d106ed0bab3a2c242187ccb8af70e
   methods: {
     
   },
@@ -46,8 +51,6 @@ export default {
 
       .px1 {
         color: #eb6100;
-      }
-      .px2 {
       }
     }
     .xx {

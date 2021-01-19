@@ -3,8 +3,8 @@
     <!-- tit;e -->
     <div class="title">
       <div class="title_left">
-        <img :src="item.teacher_avatar" alt="" />
-        <span>{{ item.teacher_name }}</span>
+        <img :src="list.avatar" alt="" />
+        <span>{{ list.real_name }}</span>
       </div>
       <div class="title_right">
         <p @click="guanzhu">
@@ -31,9 +31,25 @@
     <!-- 老师简介 -->
     <div class="introduce" v-if="show">
       <div class="tea_user">老师简介</div>
-      <div class="ince">{{ item.introduction }}</div>
+      <div class="ince">{{ list.introduction }}</div>
     </div>
-    <div class="curriculum" v-else></div>
+    <div class="curriculum" v-else>
+      <ul>
+        <li v-for="(item, index) in main" :key="index" @click="gotoCourseDetail(item.id)">
+          <img :src="item.cover_img" alt="" />
+          <div class="right">
+            <div class="right_title">{{ item.title }}</div>
+            <div class="has_buy">
+              <div class="has_name">{{ item.sales_num }}人已报名</div>
+              <div class="isBuy">
+                <span v-if="item.has_buy!=0">{{ item.has_buy }}</span>
+                <span v-else class="is">免费 </span>
+              </div>
+            </div>
+          </div>
+        </li>
+      </ul>
+    </div>
   </div>
 </template>
 <script>
@@ -53,30 +69,40 @@ export default {
       ],
       active: 0,
       show: true,
-      item: this.$route.query.item,
-      data: localStorage.getItem("guanzhu") || "关注",
+      data: /* localStorage.getItem("guanzhu") || */ "关注",
+      list: [],
+      main: [], //主讲课程
     };
   },
-  mounted() {
+  computed: {},
+  created() {
     getTeaDetail(this.$route.query.id).then((res) => {
       console.log(res);
-      console.log(this.$route.query.item);
+      if (res.data.code == 200) {
+        this.list = res.data.data.teacher;
+      }
     });
   },
   methods: {
+    // 去课程详情页面
+    gotoCourseDetail(id){
+      this.$router.push({path:'/courseDetail',query:{id}})
+    },
     guanzhu() {
+      console.log(parseInt(this.$route.query.id));
+      getCollect(parseInt(this.$route.query.id)).then((res) => {
+        console.log(res);
+      });
       this.state = !this.state;
       if (!this.state) {
         Toast("已取消关注");
         this.data = "关注";
+        // localStorage.setItem("guanzhu", this.data);
       } else {
         Toast("已关注");
         this.data = "取消关注";
+        // localStorage.setItem("guanzhu", this.data);
       }
-      localStorage.setItem("guanzhu", this.data);
-      getCollect(this.$route.query.id).then((res) => {
-        console.log(res);
-      });
     },
     // tab选项卡
     changeTab(val) {
@@ -86,8 +112,11 @@ export default {
           console.log(res);
         });
       } else if (!this.show) {
-        getMain(this.id).then((res) => {
+        getMain(this.$route.query.id).then((res) => {
           console.log(res);
+          if (res.data.code == 200) {
+            this.main = res.data.data.list;
+          }
         });
       }
     },
@@ -149,6 +178,49 @@ export default {
     }
     .ince {
       font-size: 0.3rem;
+    }
+  }
+  .curriculum {
+    width: 90%;
+    margin: 0 auto;
+    ul {
+      width: 100%;
+      li {
+        width: 100%;
+        height: 2rem;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        img {
+          width: 2.32rem;
+          height: 1.36rem;
+          border-radius: 0.2rem;
+        }
+        .right {
+          flex: 1;
+          height: 1.36rem;
+          display: flex;
+          flex-direction: column;
+          justify-content: space-between;
+          padding-left: 0.2rem;
+          .right_title {
+            font-size: 0.28rem;
+          }
+          .has_buy {
+            display: flex;
+            justify-content: space-between;
+            .has_name {
+              color: gray;
+            }
+            .isBuy{
+              .is{
+                color: green;
+                font-size: .28rem;
+              }
+            }
+          }
+        }
+      }
     }
   }
 }

@@ -10,6 +10,7 @@ Vue.use(Vuex)
 export default new Vuex.Store({
   state: {
     teaShow: false,
+    subject: "数学/语文/英语/物理/化学"
   },
   mutations: {
     teashow(state, show) {
@@ -21,6 +22,14 @@ export default new Vuex.Store({
         state.teaShow = false
       }
     },
+    changesub(state, val) {
+      state.subject = val
+      // if (state.subject == "") {
+      //   state.subject += val;
+      // } else {
+      //   state.subject += "/" + val;
+      // }
+    }
 
   },
   actions: {},
