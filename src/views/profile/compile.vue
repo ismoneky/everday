@@ -23,7 +23,9 @@
         close-on-click-action
         @select="changacatar"
       >
-        <van-uploader :after-read="afterRead" class="paizhao" >拍照</van-uploader>
+        <van-uploader :after-read="afterRead" class="paizhao"
+          >拍照</van-uploader
+        >
       </van-action-sheet>
 
       <div class="chang_head border-bottom" @click="toname">
@@ -110,25 +112,62 @@
         />
       </van-action-sheet>
 
-      <div class="chang_head border-bottom">
+      <div class="chang_head border-bottom" @click="classhow = true">
         <section class="head_left">
           <span>年级</span>
-          <span class="left_cont">高一</span>
+          <span class="left_cont">{{ grade }}</span>
         </section>
         <section class="head_right">
           <van-icon name="arrow" />
         </section>
       </div>
 
-      <div class="chang_head border-bottom">
+      <van-action-sheet
+        v-model="classhow"
+        cancel-text="取消"
+        close-on-click-action
+      >
+        <van-picker
+          title="选择年级"
+          show-toolbar
+          :columns="columns"
+          @confirm="onConfirm"
+          @cancel="classhow = false"
+        />
+      </van-action-sheet>
+
+      <div class="chang_head border-bottom" @click="subject = true">
         <section class="head_left">
           <span>学科</span>
-          <span class="left_cont">数学\语文\英语\物理\化学</span>
+          <span class="left_cont">{{ str }}</span>
         </section>
         <section class="head_right">
           <van-icon name="arrow" />
         </section>
       </div>
+      <van-popup v-model="subject">
+        <div class="subject-list">
+          <p>学科选择</p>
+          <div class="list-cont">
+            <section
+              ref="subjectclass"
+              v-for="(item, index) in classlist"
+              :key="index"
+              @click="ckclass(index)"
+              :style="
+                item.falg === true
+                  ? [{ background: 'orange' }, { color: 'white' }]
+                  : ''
+              "
+            >
+              {{ item.name }}
+            </section>
+          </div>
+          <div class="surebtn" @click="suresub">
+            确定
+          </div>
+        </div>
+      </van-popup>
     </div>
   </div>
 </template>
@@ -155,15 +194,68 @@ export default {
       obj: {
         birthday: "",
       },
-      objimg:{
-        avatar :'https://ss0.bdstatic.com/70cFvHSh_Q1YnxGkpoWK1HF6hhy/it/u=3087306304,1351303500&fm=26&gp=0.jpg'
+      objimg: {
+        avatar:
+          "https://ss0.bdstatic.com/70cFvHSh_Q1YnxGkpoWK1HF6hhy/it/u=3087306304,1351303500&fm=26&gp=0.jpg",
       },
       show: false,
       datashow: false,
       cityshow: false,
+      classhow: false,
+      subject: false,
       minDate: new Date(1960, 0, 1),
       maxDate: new Date(2021, 10, 1),
       currentDate: new Date(),
+      columns: [
+        "初一",
+        "初二",
+        "初三",
+        "高一",
+        "高二",
+        "高三",
+        "大一",
+        "大二",
+        "大三",
+      ],
+      classlist: [
+        {
+          name: "语文",
+          falg: false,
+        },
+        {
+          name: "数学",
+          falg: false,
+        },
+        {
+          name: "英语",
+          falg: false,
+        },
+        {
+          name: "物理",
+          falg: false,
+        },
+        {
+          name: "化学",
+          falg: false,
+        },
+        {
+          name: "生物",
+          falg: false,
+        },
+        {
+          name: "政治",
+          falg: false,
+        },
+        {
+          name: "历史",
+          falg: false,
+        },
+        {
+          name: "地理",
+          falg: false,
+        },
+      ],
+      grade: "高一",
       areaList: city,
       cityObj: {
         province_name: "",
@@ -173,6 +265,7 @@ export default {
         district_name: "",
         province_id: "",
       },
+      strsub: "",
     };
   },
   created() {
@@ -181,6 +274,9 @@ export default {
   computed: {
     user() {
       return this.$store.state.loginStore.user;
+    },
+    str() {
+      return this.$store.state.subject;
     },
   },
   methods: {
@@ -235,11 +331,34 @@ export default {
       if (action.name === "从手机中选择") {
       }
     },
-    async afterRead(file){
+    async afterRead(file) {
       console.log(file);
-      let {data}  = await  getuserinfo(this.objimg)
-      this.show = false
-    }
+      let { data } = await getuserinfo(this.objimg);
+      this.show = false;
+    },
+    onConfirm(value) {
+      this.grade = value;
+      this.classhow = false;
+    },
+    ckclass(i) {
+      this.classlist[i].falg = !this.classlist[i].falg;
+      this.strsub = "";
+      this.classlist.forEach((item) => {
+        if (this.strsub == "") {
+          if (item.falg) {
+            this.strsub += item.name;
+          }
+        } else {
+          if (item.falg) {
+            this.strsub += '/' + item.name;
+          }
+        }
+      });
+    },
+    suresub() {
+      this.$store.commit("changesub", this.strsub);
+      this.subject = false;
+    },
   },
 };
 </script>
@@ -249,6 +368,8 @@ export default {
   width: 100%;
   height: 100%;
 }
+// border: 1px solid orange;
+//     background: rgba(rgb(255, 234, 196) , 0.3);
 .content {
   width: 100%;
   height: calc(100% - 0.9rem);
@@ -290,14 +411,50 @@ export default {
   color: #b9b9b9;
   font-size: 0.3rem;
 }
-.paizhao{
-   width: 100%;
-   height: 1rem;
-   line-height: 1rem;
-   text-align: center;
-   font-size: 0.32rem;
-}
-/deep/.van-uploader__input-wrapper{
+.paizhao {
   width: 100%;
+  height: 1rem;
+  line-height: 1rem;
+  text-align: center;
+  font-size: 0.32rem;
+}
+/deep/.van-uploader__input-wrapper {
+  width: 100%;
+}
+.subject-list {
+  width: 7rem;
+  height: 6rem;
+  background: white;
+  font-size: 0.32rem;
+  text-align: center;
+  padding: 0.2rem;
+  p {
+    font-size: 0.36rem;
+    font-weight: 600;
+  }
+  .list-cont {
+    width: 100%;
+    height: 4rem;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    padding: 0.2rem;
+    section {
+      // flex: 3;
+      width: 30%;
+      height: 0.8rem;
+      text-align: center;
+      line-height: 0.8rem;
+      border: 1px solid #cccccc;
+    }
+  }
+  .surebtn {
+    width: 3rem;
+    height: 0.6rem;
+    background: orangered;
+    color: white;
+    line-height: 0.6rem;
+    margin: 0 auto;
+  }
 }
 </style>

@@ -78,12 +78,6 @@ export default {
   created() {
     getTeaDetail(this.$route.query.id).then((res) => {
       console.log(res);
-<<<<<<< HEAD
-    });
-  },
-  methods: {
-    async guanzhu() {
-=======
       if (res.data.code == 200) {
         this.list = res.data.data.teacher;
       }
@@ -99,7 +93,6 @@ export default {
       getCollect(parseInt(this.$route.query.id)).then((res) => {
         console.log(res);
       });
->>>>>>> b8cb787645936be899fa2ca2d91c4537de03684c
       this.state = !this.state;
       if (!this.state) {
         Toast("已取消关注");
@@ -110,13 +103,7 @@ export default {
         this.data = "取消关注";
         // localStorage.setItem("guanzhu", this.data);
       }
-<<<<<<< HEAD
-      localStorage.setItem("guanzhu", this.data);
-      let {data} = await getCollect(this.$route.query.id)
-=======
->>>>>>> b8cb787645936be899fa2ca2d91c4537de03684c
     },
-
     // tab选项卡
     changeTab(val) {
       this.show = !this.show;

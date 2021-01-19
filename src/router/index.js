@@ -126,6 +126,13 @@ const routes = [{
       isLogin: true
     },
     component:() => import('../views/profile/exit.vue')
+  },{
+    path:'/attention',
+    name:'attention',
+    meta:{
+      isLogin:true
+    },
+    component:() => import('../views/profile/attention.vue')
   }
 ]
 

@@ -19,11 +19,6 @@ export default {
     };
   },
   created() {
-<<<<<<< HEAD
-=======
-
-
->>>>>>> b8cb787645936be899fa2ca2d91c4537de03684c
   },
   methods: {
     
