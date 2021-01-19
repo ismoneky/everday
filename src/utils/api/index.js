@@ -31,9 +31,30 @@ export const getCoursedaGang = (id) => server.post(`/courseChapter`, {
 
 // 课程详情
 export const getCourseInce = (id) => server.get(`/spellGroupInfo/${id}/course?`)
+// 课程评价
+export const getCourseComment = (id) => server.post(`/courseComment`, {
+    id: id,
+    limit: 100,
+    page: 1,
+})
 
+// 课程收藏
+export const getCourseShouCang = (id) => server.post(`/collect`, {
+    course_basis_id: id,
+    type: 1
+})
+// 课程取消收藏
+export const getCourseQuXiaoShouCang = (id) => server.post(`/collect/cancel`, {
+    collect_id: id,
+    type: 1
+})
 
-
+// /227/1
+// 立即报名
+export const getbaoming = (id) => server.post(`order/downOrder`, {
+    shop_id: id,
+    type: 5,
+})
 
 export const getLogin = (obj) => server.post('/login', obj) //登录接口
 export const getprofile = () => server.get('/userInfo') //个人信息获取接口
