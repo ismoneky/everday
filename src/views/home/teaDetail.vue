@@ -74,7 +74,8 @@ export default {
       main: [], //主讲课程
     };
   },
-  mounted() {
+  computed: {},
+  created() {
     getTeaDetail(this.$route.query.id).then((res) => {
       console.log(res);
       if (res.data.code == 200) {

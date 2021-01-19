@@ -19,8 +19,6 @@ export default {
     };
   },
   created() {
-
-
   },
   methods: {
     
@@ -49,8 +47,6 @@ export default {
 
       .px1 {
         color: #eb6100;
-      }
-      .px2 {
       }
     }
     .xx {
