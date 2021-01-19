@@ -5,28 +5,49 @@
         <van-icon name="arrow-left" />
       </div>
       <div class="two">
-        <input type="text" placeholder="请输入内容" />
+        <input type="text" placeholder="请输入内容" v-model="val" @keyup.enter ="getval"/>
       </div>
-      <div class="three">取消</div>
+      <div class="three" @click="goback">取消</div>
     </div>
     <div class="wrap">
       <p>历史搜索</p>
       <span>
-        <van-icon name="delete" />
+        <van-icon name="delete" @click="del" />
       </span>
     </div>
+    <ul class="cont">
+      <li v-for="(item,i) in $store.state.teachers.vals" :key="i">{{item}}</li>
+    </ul>
   </div>
 </template>
 <script>
 import { Icon } from "vant";
+import {getsousuo} from '../utils/api/index'
 export default {
   data() {
-    return {};
+    return {
+      val:''
+    };
   },
   methods: {
+    getval(){
+      getsousuo(this.val).then(res=>{
+        this.$router.push({
+          path:'/feature',
+          query:{
+            list:res.data.data.list
+          },
+        })
+        this.$store.commit('teachers/getval',this.val)
+        this.val=''
+      })
+    },
       goback(){
           this.$router.go(-1)
-      }
+      },
+      del(){
+        this.$store.commit('teachers/del')
+      },
   },
 };
 </script>
@@ -80,6 +101,25 @@ export default {
     span {
           font-size: 0.4rem;
           line-height: 1.2rem;
+    }
+  }
+  .cont{
+      width: 100%;
+      padding: 0.3rem;
+      display: flex;
+      flex-wrap: wrap;
+      font-size: 0.3rem;
+
+    li{
+      border-radius: 5px;
+      margin: 0.2rem;
+      float: left;
+      height: 0.5rem;
+      line-height: 0.3rem;
+      padding: 0.1rem;
+      // width: 1rem;
+      text-align: center;
+      background-color: rgb(182, 182, 182);
     }
   }
 }

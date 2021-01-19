@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 import loginStore from '@/store/loginStore'
+import teachers from '@/store/LYX'
 import createPersistedState from "vuex-persistedstate";
 
 
@@ -24,7 +25,8 @@ export default new Vuex.Store({
   },
   actions: {},
   modules: {
-    loginStore
+    loginStore,
+    teachers
   },
   plugins: [createPersistedState()]
 })

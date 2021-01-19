@@ -21,23 +21,21 @@ export const getHotDetail = (id) => server.post(`/information/detail`, {
     information_id: id,
 })
 
-<<<<<<< HEAD
 export const getLogin = (obj) => server.post('/login', obj)       //登录接口
 export const getprofile = () => server.get('/userInfo')           //个人信息获取接口
 export const getuserinfo = (obj) => server.put('/user',obj)       //个人信息修改页面
 export const getcity = () => server.get('sonArea/0')              //获取城市数据
 export const getcollect = (obj) => server.get('/collect' + `?page=${obj.page}` + `&limit=${obj.limit}` + `&type=${obj.type}`)//获取关注数据
-// 老师详情
-const getTeaDetail = async function (id) {
-    var {
-        data
-    } = await server.get(`/teacher/info/id=${id}`)
-    return data
-}
-=======
-export const getLogin = (obj) => server.post('/login', obj) //登录接口
 
->>>>>>> 3f2315e12aa69c92ecc449cec9a22741c6c98e53
 
-export const getTeachers = () => server.get('myStudy/2') //特色课
-  
+
+
+
+
+
+export const getTeachers = () => server.get('myStudy/2?') //特色课暂时不知道这是个啥
+export const gets = (obj) => server.get(
+    `courseBasis?page=${obj.page}&limit=10&order_by=${obj.num}`
+    ) //特色课课程
+export const getlists=()=>server.get('courseClassify')   //特色课分类
+export const getsousuo=(val)=>server.get(`courseBasis?limit=10&page=1&course_type=0&keywords=${val}`)   //特色课搜索
