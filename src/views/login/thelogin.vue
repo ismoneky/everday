@@ -65,15 +65,12 @@ export default {
   methods: {
     async tologin() {
       var ref = /^(?:(?:\+|00)86)?1(?:(?:3[\d])|(?:4[5-7|9])|(?:5[0-3|5-9])|(?:6[5-7])|(?:7[0-8])|(?:8[\d])|(?:9[1|8|9]))\d{8}$/;
-
       if (this.userobj.mobile.match(ref)) {
         let { data } = await getLogin(this.userobj);
-
         if (data.code === 200) {
-
           localStorage.setItem("token", data.data.remember_token);
           this.$router.push('/')
-
+         Toast.success('登录成功')
         }
       } else {
         Toast.fail("请输入正确手机号");

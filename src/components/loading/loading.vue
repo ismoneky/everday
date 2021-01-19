@@ -1,6 +1,8 @@
 <template>
   <div id="loading" v-show="show">
-    <img src="/loading.gif" alt="" />
+    <div class="loadimg">
+      <img src="/loading.gif" alt="" />
+    </div>
   </div>
 </template>
 
@@ -29,11 +31,18 @@ export default {
   align-items: center;
   justify-content: center;
   z-index: 999;
-  background-color: rgba(0, 0, 0, 0.3);
-  img {
+  background-color: rgba(0, 0, 0, 0.5);
+  .loadimg {
     width: 40%;
-    height: 15%;
-    border-radius: 0.2rem;
+    height: 20%;
+    border-radius: 50%;
+    background-color: transparent;
+    border: 1px solid red;
+    img {
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+    }
   }
 }
 </style>

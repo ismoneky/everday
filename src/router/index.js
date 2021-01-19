@@ -107,14 +107,19 @@ const routes = [{
     meta: {
       isLogin: true
     },
-    meta: {
-      isLogin: true
-    },
+ 
     component: () => import('../views/profile/mycollection.vue')
   }, {
     path: '/login', //登录页面
     name: 'login',
     component: () => import('../views/login/thelogin.vue')
+  },{
+    path:'/exit',
+    name:'exit',
+    meta: {
+      isLogin: true
+    },
+    component:() => import('../views/profile/exit.vue')
   }
 ]
 

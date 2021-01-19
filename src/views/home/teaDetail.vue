@@ -57,14 +57,14 @@ export default {
       data: localStorage.getItem("guanzhu") || "关注",
     };
   },
-  mounted() {
+  computed: {},
+  created() {
     getTeaDetail(this.$route.query.id).then((res) => {
       console.log(res);
-      console.log(this.$route.query.item);
     });
   },
   methods: {
-    guanzhu() {
+    async guanzhu() {
       this.state = !this.state;
       if (!this.state) {
         Toast("已取消关注");
@@ -74,10 +74,9 @@ export default {
         this.data = "取消关注";
       }
       localStorage.setItem("guanzhu", this.data);
-      getCollect(this.$route.query.id).then((res) => {
-        console.log(res);
-      });
+      let {data} = await getCollect(this.$route.query.id)
     },
+
     // tab选项卡
     changeTab(val) {
       this.show = !this.show;

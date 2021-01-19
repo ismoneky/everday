@@ -19,11 +19,12 @@
       </div>
       <van-action-sheet
         v-model="show"
-        :actions="actions"
         cancel-text="取消"
         close-on-click-action
-        @cancel="show = false"
-      />
+        @select="changacatar"
+      >
+        <van-uploader :after-read="afterRead" class="paizhao" >拍照</van-uploader>
+      </van-action-sheet>
 
       <div class="chang_head border-bottom" @click="toname">
         <section class="head_left">
@@ -154,10 +155,12 @@ export default {
       obj: {
         birthday: "",
       },
+      objimg:{
+        avatar :'https://ss0.bdstatic.com/70cFvHSh_Q1YnxGkpoWK1HF6hhy/it/u=3087306304,1351303500&fm=26&gp=0.jpg'
+      },
       show: false,
       datashow: false,
       cityshow: false,
-      actions: [{ name: "拍照" }, { name: "从手机相册选择" }],
       minDate: new Date(1960, 0, 1),
       maxDate: new Date(2021, 10, 1),
       currentDate: new Date(),
@@ -187,7 +190,6 @@ export default {
         this.$store.commit("loginStore/setUser", data.data);
       }
     },
-
     toname() {
       this.$router.push("/changename");
     },
@@ -203,11 +205,11 @@ export default {
         "-" +
         (this.date.getMonth() + 1) +
         "-" +
-        this.date.getDate()
+        this.date.getDate();
 
       let { data } = await getuserinfo(this.obj);
       this.datashow = false;
-      this.$router.go(0)
+      this.$router.go(0);
     },
     cancel() {
       console.log(2);
@@ -229,6 +231,15 @@ export default {
     cityoff() {
       this.cityshow = false;
     },
+    changacatar(action) {
+      if (action.name === "从手机中选择") {
+      }
+    },
+    async afterRead(file){
+      console.log(file);
+      let {data}  = await  getuserinfo(this.objimg)
+      this.show = false
+    }
   },
 };
 </script>
@@ -278,5 +289,15 @@ export default {
 .left_cont {
   color: #b9b9b9;
   font-size: 0.3rem;
+}
+.paizhao{
+   width: 100%;
+   height: 1rem;
+   line-height: 1rem;
+   text-align: center;
+   font-size: 0.32rem;
+}
+/deep/.van-uploader__input-wrapper{
+  width: 100%;
 }
 </style>
