@@ -23,6 +23,7 @@
         <div class="shou">
           <p @click="shou" v-if="!state"><van-icon name="star-o" /></p>
           <p @click="quxiaoshoucang" v-else><van-icon name="star" /></p>
+          <van-icon name="share-o" class="share" @click="showCode = true" />
         </div>
       </div>
     </div>
@@ -49,24 +50,23 @@
     </div>
     <!-- tab选项卡 -->
     <div class="tab border-bottom">
-      <div
-        v-for="(item, index) in tab"
-        @click="tabIndex = index"
-        :style="{ color: tabIndex === index ? '#E60012' : '' }"
-        :key="index"
-      >
-        {{ item.title }}
+      <div v-for="(item, index) in tab" @click="tabIndex = index" :key="index">
+        <a
+          :href="item.idd"
+          :style="{ color: tabIndex === index ? '#E60012' : '' }"
+          >{{ item.title }}</a
+        >
       </div>
     </div>
     <!-- 课程介绍 -->
-    <div class="introduce">
+    <div class="introduce" id="a">
       <div class="introduce_title">课程介绍</div>
       <div class="introduce_list">
-        <div class="list">看图片片，是字字</div>
+        <div class="list" v-html="info.course_details"></div>
       </div>
     </div>
     <!-- 课程大纲 -->
-    <div class="outline">
+    <div class="outline" id="b">
       <div class="outline_title">课程大纲</div>
       <ul>
         <li v-for="(item, index) in dg" :key="index">
@@ -75,7 +75,7 @@
       </ul>
     </div>
     <!-- 课程评价 -->
-    <div class="comment">
+    <div class="comment" id="c">
       <div class="comment_title">课程评价</div>
       <div class="comment_list" v-if="comment.length != 0">
         <div class="list" v-for="(item, index) in comment" :key="index">
@@ -105,8 +105,24 @@
     </div>
     <!-- 立即报名 -->
     <div class="baoming">
-      <p @click="btn">立即报名</p>
+      <p @click="btn" v-if="is_buy">立即报名</p>
+      <p @click="study" v-else>立即学习</p>
     </div>
+
+    <!-- dialog -->
+    <div class="dialog_box" v-if="showCode" @click.stop="del">
+      <!-- <div class="dialog_stop" @click.stop="del"> -->
+      <div class="dialog">
+        <div class="del">
+          <van-icon name="cross" @click="showCode = false" />
+        </div>
+        <div class="dialog_title">分享</div>
+        <div class="code">
+          <qriously :value="initQCode" :size="138" />
+        </div>
+      </div>
+    </div>
+    <!-- </div> -->
   </div>
 </template>
 <script>
@@ -127,17 +143,18 @@ export default {
       info: {},
       team: [],
       tab: [
-        { title: "课程介绍", id: 1 },
-        { title: "课程大纲", id: 2 },
-        { title: "课程评价", id: 3 },
+        { title: "课程介绍", id: 1, idd: "#a" },
+        { title: "课程大纲", id: 2, idd: "#b" },
+        { title: "课程评价", id: 3, idd: "#c" },
       ],
       dg: [],
       comment: [],
       tabIndex: 0,
       type: "",
-      spell_id: "",
-      is_free: "",
-      state: false,
+      state: false, //未收藏
+      is_buy: false, //是否报名
+      initQCode: "Hello World",
+      showCode: false, //二维码
     };
   },
   mounted() {
@@ -156,8 +173,6 @@ export default {
       this.info = data.data.info;
       this.team = data.data.teachers;
       this.type = data.data.info.course_type;
-      this.spell_id = data.data.info.spell_id;
-      this.is_free = data.data.info.is_free;
       console.log(this.list);
     },
     // 课程介绍
@@ -193,22 +208,13 @@ export default {
     },
     // 取消收藏
     quxiaoshoucang() {
-      getCourseQuXiaoShouCang(this.$route.query.id).then(res=>{
+      getCourseQuXiaoShouCang(this.$route.query.id).then((res) => {
         console.log(res);
-      })
+      });
     },
     //报名
     btn() {
-      console.log(this.type);
-      console.log(this.spell_id);
-      console.log(this.is_free);
-      // let obj = {
-      //   type: this.type,
-      //   id: this.$route.query.id,
-      //   spell_id: this.spell_id,
-      //   is_free: this.is_free,
-      // };
-      getbaoming(this.$route.query.id).then((res) => {
+      getbaoming(this.$route.query.id, this.type).then((res) => {
         console.log(res);
         if (res.data.code == 200) {
           Toast("报名成功");
@@ -216,6 +222,16 @@ export default {
           Toast(res.data.msg);
         }
       });
+    },
+    // 学习
+    study() {
+      this.$router.push({
+        path: "/my_courseList",
+        query: { id: this.$route.query.id },
+      });
+    },
+    del() {
+      this.showCode = false;
     },
   },
 
@@ -328,6 +344,10 @@ export default {
       }
       .shou {
         color: orange;
+        .share {
+          margin-left: 0.2rem;
+          color: gray;
+        }
       }
     }
   }
@@ -391,6 +411,9 @@ export default {
     margin-top: 0.2rem;
     > div {
       font-size: 0.3rem;
+      a {
+        color: gray;
+      }
     }
   }
   .introduce {
@@ -502,6 +525,43 @@ export default {
       color: #fff;
       border-radius: 0.3rem;
       margin-left: 2%;
+    }
+  }
+}
+.dialog_box {
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 9;
+  .dialog {
+    width: 4rem;
+    height: 4rem;
+    background: #fff;
+    margin: auto;
+    transform: translateY(100%);
+    border-radius: 0.2rem;
+    .del {
+      height: 0.5rem;
+      display: flex;
+      justify-content: flex-end;
+      align-items: center;
+      margin-right: 0.1rem;
+    }
+    .dialog_title {
+      display: flex;
+      justify-content: center;
+      font-size: 0.3rem;
+    }
+    .code {
+      height: 3rem;
+      display: flex;
+      justify-content: center;
+      align-items: center;
     }
   }
 }

@@ -1,15 +1,14 @@
 <template>
   <div class="teaDetail">
-    <!-- tit;e -->
+    <!-- title -->
     <div class="title">
       <div class="title_left">
         <img :src="list.avatar" alt="" />
         <span>{{ list.real_name }}</span>
       </div>
       <div class="title_right">
-        <p @click="guanzhu">
-          <span v-if="!state">{{ data }}</span>
-          <span v-else>{{ data }}</span>
+        <p @click="followFn">
+          <span>{{ state ? "关注" : "取消关注" }}</span>
         </p>
       </div>
     </div>
@@ -35,14 +34,18 @@
     </div>
     <div class="curriculum" v-else>
       <ul>
-        <li v-for="(item, index) in main" :key="index" @click="gotoCourseDetail(item.id)">
+        <li
+          v-for="(item, index) in main"
+          :key="index"
+          @click="gotoCourseDetail(item.id)"
+        >
           <img :src="item.cover_img" alt="" />
           <div class="right">
             <div class="right_title">{{ item.title }}</div>
             <div class="has_buy">
               <div class="has_name">{{ item.sales_num }}人已报名</div>
               <div class="isBuy">
-                <span v-if="item.has_buy!=0">{{ item.has_buy }}</span>
+                <span v-if="item.has_buy != 0">{{ item.has_buy }}</span>
                 <span v-else class="is">免费 </span>
               </div>
             </div>
@@ -62,22 +65,22 @@ export default {
   },
   data() {
     return {
-      state: false,
+      state: null,
       tab: [
         { title: "讲师介绍", id: 1 },
         { title: "主讲课程", id: 2 },
       ],
       active: 0,
       show: true,
-      data: /* localStorage.getItem("guanzhu") || */ "关注",
       list: [],
       main: [], //主讲课程
     };
   },
   computed: {},
-  created() {
-    getTeaDetail(this.$route.query.id).then((res) => {
-      console.log(res);
+  async created() {
+    // 老师详情
+    await getTeaDetail(this.$route.query.id).then((res) => {
+      // console.log(res);
       if (res.data.code == 200) {
         this.list = res.data.data.teacher;
       }
@@ -85,23 +88,20 @@ export default {
   },
   methods: {
     // 去课程详情页面
-    gotoCourseDetail(id){
-      this.$router.push({path:'/courseDetail',query:{id}})
+    gotoCourseDetail(id) {
+      this.$router.push({ path: "/courseDetail", query: { id } });
     },
-    guanzhu() {
-      console.log(parseInt(this.$route.query.id));
-      getCollect(parseInt(this.$route.query.id)).then((res) => {
-        console.log(res);
-      });
-      this.state = !this.state;
-      if (!this.state) {
-        Toast("已取消关注");
-        this.data = "关注";
-        // localStorage.setItem("guanzhu", this.data);
-      } else {
-        Toast("已关注");
-        this.data = "取消关注";
-        // localStorage.setItem("guanzhu", this.data);
+    async followFn() {
+      let { data:res } = await getCollect(this.$route.query.id);
+      console.log(res);
+      if (res.code === 200) {
+        if (res.data.flag === 2) {
+          this.state = false;
+          Toast("已关注");
+        } else {
+          this.state = true;
+          Toast("已取消关注");
+        }
       }
     },
     // tab选项卡
@@ -109,11 +109,12 @@ export default {
       this.show = !this.show;
       if (this.show) {
         getInce(this.$route.query.id).then((res) => {
-          console.log(res);
+          // console.log(res);
         });
       } else if (!this.show) {
+        // 主讲课程
         getMain(this.$route.query.id).then((res) => {
-          console.log(res);
+          // console.log(res);
           if (res.data.code == 200) {
             this.main = res.data.data.list;
           }
@@ -212,10 +213,10 @@ export default {
             .has_name {
               color: gray;
             }
-            .isBuy{
-              .is{
+            .isBuy {
+              .is {
                 color: green;
-                font-size: .28rem;
+                font-size: 0.28rem;
               }
             }
           }
