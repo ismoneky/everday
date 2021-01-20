@@ -31,17 +31,18 @@ export default {
   align-items: center;
   justify-content: center;
   z-index: 999;
-  background-color: rgba(0, 0, 0, 0.5);
+  // background-color: rgba(0, 0, 0, 0.5);
   .loadimg {
-    width: 40%;
-    height: 20%;
-    border-radius: 50%;
-    background-color: transparent;
-    border: 1px solid red;
+    width: 30vw;
+    height: 30vw;
+    background-color: rgba(0, 0, 0, 0.5);
+    border-radius: 10px;
+    // background-color: transparent;
+    // border: 1px solid red;
     img {
+      border-radius: 10px;
       width: 100%;
       height: 100%;
-      border-radius: 50%;
     }
   }
 }

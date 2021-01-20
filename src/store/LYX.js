@@ -7,6 +7,10 @@ const teachers = {
 
     },
     mutations: {
+        isFlag(state,val){
+            state.isflag=!state.isflag
+            console.log(state.isflag);
+        },
         getcz(state,val){   //重置数据
             state.flag=true
         },

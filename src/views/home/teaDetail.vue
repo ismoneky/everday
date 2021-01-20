@@ -3,13 +3,13 @@
     <!-- tit;e -->
     <div class="title">
       <div class="title_left">
-        <img :src="list.avatar" alt="" />
+        <img :src="list.avatar" />
         <span>{{ list.real_name }}</span>
       </div>
       <div class="title_right">
         <p @click="guanzhu">
-          <span v-if="!state">{{ data }}</span>
-          <span v-else>{{ data }}</span>
+          <span>{{ isgz | filgz }}</span>
+          <!-- //lyx -->
         </p>
       </div>
     </div>
@@ -35,14 +35,18 @@
     </div>
     <div class="curriculum" v-else>
       <ul>
-        <li v-for="(item, index) in main" :key="index" @click="gotoCourseDetail(item.id)">
+        <li
+          v-for="(item, index) in main"
+          :key="index"
+          @click="gotoCourseDetail(item.id)"
+        >
           <img :src="item.cover_img" alt="" />
           <div class="right">
             <div class="right_title">{{ item.title }}</div>
             <div class="has_buy">
               <div class="has_name">{{ item.sales_num }}人已报名</div>
               <div class="isBuy">
-                <span v-if="item.has_buy!=0">{{ item.has_buy }}</span>
+                <span v-if="item.has_buy != 0">{{ item.has_buy }}</span>
                 <span v-else class="is">免费 </span>
               </div>
             </div>
@@ -62,47 +66,61 @@ export default {
   },
   data() {
     return {
-      state: false,
+      isgz: 1, //判断是否关注
       tab: [
         { title: "讲师介绍", id: 1 },
         { title: "主讲课程", id: 2 },
       ],
       active: 0,
       show: true,
-      data: /* localStorage.getItem("guanzhu") || */ "关注",
       list: [],
       main: [], //主讲课程
     };
   },
   computed: {},
   created() {
-    getTeaDetail(this.$route.query.id).then((res) => {
-      console.log(res);
-      if (res.data.code == 200) {
-        this.list = res.data.data.teacher;
+  },
+  mounted(){
+    this.getTeaDetails();
+  },
+  filters: {
+    filgz(newval) {
+      var str = "";
+      if (newval == 2) {
+        str = "关注";
+        return str;
+      } else {
+        str = "取消关注";
+        return str;
       }
-    });
+    },
   },
   methods: {
+    getTeaDetails() {
+      
+      getTeaDetail(this.$route.query.id).then((res) => {
+        if (res.data.code == 200) {
+          this.list = res.data.data.teacher;
+          this.isgz = res.data.data.flag;
+   
+        }
+      });
+    },
     // 去课程详情页面
-    gotoCourseDetail(id){
-      this.$router.push({path:'/courseDetail',query:{id}})
+    gotoCourseDetail(id) {
+      this.$router.push({ path: "/courseDetail", query: { id } });
     },
     guanzhu() {
-      console.log(parseInt(this.$route.query.id));
       getCollect(parseInt(this.$route.query.id)).then((res) => {
         console.log(res);
+        this.isgz=res.data.data.flag
+               if(this.isgz==1){
+           Toast('关注成功');
+          }else{
+           Toast('取消成功');
+
+          }
       });
-      this.state = !this.state;
-      if (!this.state) {
-        Toast("已取消关注");
-        this.data = "关注";
-        // localStorage.setItem("guanzhu", this.data);
-      } else {
-        Toast("已关注");
-        this.data = "取消关注";
-        // localStorage.setItem("guanzhu", this.data);
-      }
     },
     // tab选项卡
     changeTab(val) {
@@ -212,10 +230,10 @@ export default {
             .has_name {
               color: gray;
             }
-            .isBuy{
-              .is{
+            .isBuy {
+              .is {
                 color: green;
-                font-size: .28rem;
+                font-size: 0.28rem;
               }
             }
           }
