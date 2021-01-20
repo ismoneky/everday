@@ -15,7 +15,7 @@ export const getMain = (id) => server.post(`/teacher/mainCourse`, {
     page: 1
 })
 // 老师关注与取消关注
-export const getCollect = (id) => server.get(`/teacher/collect/` + id)
+export const getCollect = (id) => server.get(`/teacher/collect/${id}`)
 // 热门咨询详情页
 export const getHotDetail = (id) => server.post(`/information/detail`, {
     information_id: id,
@@ -59,14 +59,15 @@ export const getCourseShouCang = (id) => server.post(`/collect`, {
     type: 1
 })
 // 课程取消收藏
-export const getCourseQuXiaoShouCang = (id) => server.post(`/collect/cancel`, {
+export const getCourseQuXiaoShouCang = (id) => server.post(`/collect/cancel/227/1`, {
     collect_id: id,
-    type: 1
 })
-// /227/1
 // 立即报名
-export const getbaoming = (id) => server.post(`order/downOrder`, {
+export const getbaoming = (id,type) => server.post(`/order/downOrder`, {
     shop_id: id,
-    type: 5,
+    type: type,
 })
+// 立即学习
+export const getstudy = (id) => server.get(`/myStudy/course/${id}`)
+
 
