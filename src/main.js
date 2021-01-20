@@ -15,6 +15,8 @@ Vue.use(loading)
 
 Vue.use(Vant);
 
+import VueQriously from 'vue-qriously'
+Vue.use(VueQriously)
 
 Vue.config.productionTip = false
 

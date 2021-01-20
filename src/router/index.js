@@ -28,6 +28,11 @@ const routes = [{
     component: () => import('../views/home/courseDetail.vue')
   },
   {
+    path: '/my_courseList', //立即学习
+    name: 'my_courseList',
+    component: () => import('../views/home/my_courseList.vue')
+  },
+  {
     path: '/hotDetail', //热门咨询详情页
     name: 'hotDetail',
     component: () => import('../views/home/hotDetail.vue')
@@ -113,27 +118,27 @@ const routes = [{
     meta: {
       isLogin: true
     },
- 
+
     component: () => import('../views/profile/mycollection.vue')
-  }, 
+  },
   {
     path: '/login', //登录页面
     name: 'login',
     component: () => import('../views/login/thelogin.vue')
-  },{
-    path:'/exit',
-    name:'exit',
+  }, {
+    path: '/exit',
+    name: 'exit',
     meta: {
       isLogin: true
     },
-    component:() => import('../views/profile/exit.vue')
-  },{
-    path:'/attention',
-    name:'attention',
-    meta:{
-      isLogin:true
+    component: () => import('../views/profile/exit.vue')
+  }, {
+    path: '/attention',
+    name: 'attention',
+    meta: {
+      isLogin: true
     },
-    component:() => import('../views/profile/attention.vue')
+    component: () => import('../views/profile/attention.vue')
   }
 ]
 

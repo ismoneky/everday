@@ -18,6 +18,7 @@
           <p class="tit">
             <span>{{ item.title }}</span>
           </p>
+          <img src="222.png" alt="" class="img" v-show="item.has_buy===1?true:false">
           <p class="cont">
             <span>3人已报名</span>
             <span class="right2"> 免费 </span>
@@ -67,8 +68,10 @@ export default {
     getid(item){
       console.log(item);
       this.$router.push({
-        path:'/teaDetail',
-        query:item.id
+        path:'/courseDetail',
+        query:{
+          id:item.id
+        }
       })
     },
     onLoad() {
@@ -117,6 +120,7 @@ export default {
   padding: 0.3rem;
   // background-color: red;
   .Cards {
+    position: relative;
     background: #fff;
     border-radius: 0.26667rem;
     border-radius: 2.66667vw;
@@ -126,6 +130,12 @@ export default {
     margin-bottom: 4vw;
     display: flex;
     position: relative;
+    .img{
+      position: absolute;
+      width: 22vw;
+      top: 0.1rem;
+      right: -0.2rem;
+    }
     img {
       flex: none;
       width: 3.09333rem;
