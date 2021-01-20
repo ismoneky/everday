@@ -8,6 +8,9 @@ import './assets/js/rem'
 import Vant from 'vant';
 import 'vant/lib/index.css';
 import loading from '@/components/loading/index.js'
+import axios from 'axios'
+Vue.prototype.$axios = axios
+
 Vue.use(loading)
 
 Vue.use(Vant);

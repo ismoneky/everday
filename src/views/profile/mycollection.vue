@@ -2,70 +2,43 @@
   <div class="mycollection">
     <top-nav title="我的收藏"></top-nav>
     <div class="content">
-      <div class="content-list border-bottom">
+      <div class="content-list border-bottom" v-for="(item,index) in listArray" :key="index">
         <div class="list-left">
-          <img src="/collection.png" alt="" />
+          <img :src="item.teachersAvatar" alt="" />
         </div>
         <div class="list-right">
-          <h2><span>券</span>如何成为旅游体验式</h2>
-          <b>845人已报名</b>
-          <p>￥1998.0</p>
-        </div>
-      </div>
-      <div class="content-list border-bottom">
-        <div class="list-left">
-          <img src="/collection.png" alt="" />
-        </div>
-        <div class="list-right">
-          <h2><span>券</span>如何成为旅游体验式</h2>
-          <b>845人已报名</b>
-          <p>￥1998.0</p>
-        </div>
-      </div>
-
-      <div class="content-list border-bottom">
-        <div class="list-left">
-          <img src="/collection.png" alt="" />
-        </div>
-        <div class="list-right">
-          <h2><span>券</span>如何成为旅游体验式</h2>
-          <b>845人已报名</b>
-          <p>￥1998.0</p>
-        </div>
-      </div>
-      <div class="content-list border-bottom">
-        <div class="list-left">
-          <img src="/collection.png" alt="" />
-        </div>
-        <div class="list-right">
-          <h2><span>券</span>如何成为旅游体验式</h2>
-          <b>845人已报名</b>
-          <p>￥1998.0</p>
-        </div>
-      </div>
-      <div class="content-list border-bottom">
-        <div class="list-left">
-          <img src="/collection.png" alt="" />
-        </div>
-        <div class="list-right">
-          <h2><span>券</span>如何成为旅游体验式</h2>
+          <h2><span>券</span>{{ item.title }}</h2>
           <b>845人已报名</b>
           <p>￥1998.0</p>
         </div>
       </div>
     </div>
+
   </div>
 </template>
 
 <script>
 import topNav from "@/components/topNav";
+import { getcollect } from "../../utils/api";
 export default {
   components: { topNav },
   name: "mycollection",
   data() {
-    return {};
+    return {
+      obj: {
+        page: 1,
+        limit: 5,
+        type: 1,
+      },
+      listArray: [],
+    };
   },
-  created() {},
+  created() {
+    getcollect(this.obj).then((res) => {
+      console.log(res);
+      this.listArray = res.data.data.list;
+    });
+  },
   methods: {},
 };
 </script>
@@ -77,7 +50,7 @@ export default {
 }
 .content {
   width: 100%;
-    background: white;
+  background: white;
   height: calc(100% - 0.8rem);
   padding: 0.2rem;
   overflow: hidden;
@@ -90,16 +63,16 @@ export default {
     align-items: center;
     padding: 0.3rem 0rem;
     .list-left {
-      width: 43%;
+      width: 40%;
       height: 100%;
-      img{
-          width: 100%;
-          height: 100%;
-          border-radius: 0.1rem;
+      img {
+        width: 100%;
+        height: 100%;
+        border-radius: 0.1rem;
       }
     }
     .list-right {
-      padding: 0.1rem;
+      padding: 0.2rem;
       width: 57%;
       height: 100%;
       display: flex;

@@ -1,15 +1,12 @@
 <template>
   <div id="app">
     <router-view />
-    <darg ></darg>
+ 
   </div>
 </template>
 <script>
-import darg from "@/components/darg";
 export default {
-  components: {
-    darg,
-  },
+
 };
 </script>
 <style lang="scss">

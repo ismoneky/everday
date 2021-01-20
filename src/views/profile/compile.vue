@@ -175,7 +175,7 @@
 <script>
 import city from "@/components/city";
 import topNav from "@/components/topNav";
-import { getprofile, getuserinfo } from "../../utils/api/index";
+import { getprofile, getuserinfo, changeimg } from "../../utils/api/index";
 export default {
   components: { topNav },
   name: "compile",
@@ -195,9 +195,9 @@ export default {
         birthday: "",
       },
       objimg: {
-        avatar:
-          "https://ss0.bdstatic.com/70cFvHSh_Q1YnxGkpoWK1HF6hhy/it/u=3087306304,1351303500&fm=26&gp=0.jpg",
+        avatar: "",
       },
+      imgArray: [],
       show: false,
       datashow: false,
       cityshow: false,
@@ -281,6 +281,7 @@ export default {
   },
   methods: {
     async userinfo() {
+      console.log(1);
       let { data } = await getprofile();
       if (data.code == 200) {
         this.$store.commit("loginStore/setUser", data.data);
@@ -332,9 +333,17 @@ export default {
       }
     },
     async afterRead(file) {
-      console.log(file);
-      let { data } = await getuserinfo(this.objimg);
+      console.log(file.file);
+      var formData = new FormData();
+      formData.append("file", file.file);
+      console.log(formData.get("file"));
+      let { data } = await changeimg(formData);
+      if (data.code == 200) {
+        this.objimg.avatar = data.data.path;
+        getuserinfo(this.objimg);
+      }
       this.show = false;
+    
     },
     onConfirm(value) {
       this.grade = value;
@@ -350,7 +359,7 @@ export default {
           }
         } else {
           if (item.falg) {
-            this.strsub += '/' + item.name;
+            this.strsub += "/" + item.name;
           }
         }
       });

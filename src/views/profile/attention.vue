@@ -6,6 +6,7 @@
         class="list-div"
         v-for="item in list"
         :key="item.collect_id"
+        
       >
         <section>
           <img :src="item.avatar" alt="" />
@@ -17,7 +18,7 @@
           </p>
           <p class="p-deatil">{{ item.introduction }}</p>
         </section>
-        <section class="btn">
+        <section class="btn" @click="look(item)">
           <span>查看详情</span>
         </section>
       </div>
@@ -47,7 +48,16 @@ export default {
       this.list = res.data.data.list;
     });
   },
-  methods: {},
+  methods: {
+    look(item){
+      this.$router.push({
+        path:'/teaDetail',
+        query:{
+          id:item.teacher_id
+        }
+      })
+    }
+  },
 };
 </script>
 

@@ -26,8 +26,8 @@ export const getprofile = () => server.get('/userInfo') //个人信息获取接�
 export const getuserinfo = (obj) => server.put('/user', obj) //个人信息修改页面
 export const getcity = () => server.get('sonArea/0') //获取城市数据
 export const getcollect = (obj) => server.get('/collect' + `?page=${obj.page}` + `&limit=${obj.limit}` + `&type=${obj.type}`) //获取关注数据
-
-
+export const getTs = () => server.get('/myStudy/2')
+export const changeimg = (formdata,) => server.post('/public/img',formdata)
 
 
 export const getTeachers = () => server.get('myStudy/2?') //特色课暂时不知道这是个啥
