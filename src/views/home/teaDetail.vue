@@ -93,16 +93,14 @@ export default {
         str = "取消关注";
         return str;
       }
-    },
+    }
   },
   methods: {
     getTeaDetails() {
-      
       getTeaDetail(this.$route.query.id).then((res) => {
         if (res.data.code == 200) {
           this.list = res.data.data.teacher;
           this.isgz = res.data.data.flag;
-   
         }
       });
     },
@@ -137,6 +135,18 @@ export default {
             this.main = res.data.data.list;
           }
         });
+      }
+    },
+  },
+  filters: {
+    filgz(newval) {
+      var str = "";
+      if (newval == 2) {
+        str = "关注";
+        return str;
+      } else {
+        str = "取消关注";
+        return str;
       }
     },
   },
