@@ -7,7 +7,7 @@
         <ul>
           <li v-for="(item, index) in list" :key="index">
             <section class="li-left">
-              <img src="/money.jpg" />
+              <img src="/imgs/money.jpg" />
               <span>{{ item.count }}</span
               >学习币
             </section>

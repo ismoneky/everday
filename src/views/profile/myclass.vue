@@ -4,7 +4,7 @@
     <div class="content">
       <van-tabs v-model="active" @click="clicktype">
         <van-tab
-          v-for="(item, index) in TypeArray"
+          v-for="(item) in TypeArray"
           :key="item.type"
           :title="`${item.name}(${item.num})`"
         ></van-tab>

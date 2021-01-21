@@ -6,9 +6,9 @@
           <section>
             <div class="info-img">
               <div class="img-head">
-                <img src="/huanguan.png" alt="" class="huanguan" />
-                <img src="/avatar.jpg" alt="" class="avatar" v-if="tologin" />
-                <img :src="user.avatar" alt="" class="avatar" v-else />
+                <img src="/imgs/huanguan.png" alt="" class="huanguan" />
+                <img src="/imgs/avatar.jpg" alt="" class="avatar" v-if="tologin" />
+                <img :src="user.avatar" alt="" class="avatar" />
               </div>
             </div>
             <div class="extra">
@@ -17,7 +17,7 @@
                 <span v-if="tologin" @click="loginIN">登录/注册</span>
                 <span v-else> {{ user.nickname }}</span>
               </p>
-              <p class="edit"><img src="/xiazai.png" alt="" /></p>
+              <p class="edit"><img src="/imgs/xiazai.png" alt="" /></p>
             </div>
           </section>
           <div class="compile" @click="tocompile">
@@ -45,7 +45,7 @@
     </div>
     <div class="to-share">
       <div class="box">
-        <img src="/tubiao.png" alt="" />
+        <img src="/imgs/tubiao.png" alt="" />
         <div class="cont">
           <p>邀请好友注册APP，享多重好礼</p>
           <p>限时特惠，多邀多得</p>
@@ -184,7 +184,6 @@ export default {
   data() {
     return {
       tologin: false,
-
     };
   },
   computed: {
@@ -193,10 +192,10 @@ export default {
     },
   },
   created() {
-    if (this.user == "") {
-      this.tologin = true;
-    } else {
+    if (localStorage.getItem('token')) {
       this.tologin = false;
+    } else {
+      this.tologin = true;
     }
 
   },
@@ -236,7 +235,7 @@ export default {
 .header {
   width: 100%;
   height: 4.35rem;
-  background-image: url("/profilebackground.png");
+  background-image: url("/imgs/profilebackground.png");
   background-size: 100%;
   background-repeat: no-repeat;
   display: flex;

@@ -1,7 +1,7 @@
 <template>
   <div class="thelogin">
     <div class="logo">
-      <img src="/logo.jpg" alt="" />
+      <img src="/imgs/logo.jpg" alt="" />
     </div>
     <div class="ipt">
       <div class="ipt-mobile">
@@ -68,6 +68,7 @@ export default {
       if (this.userobj.mobile.match(ref)) {
         let { data } = await getLogin(this.userobj);
         if (data.code === 200) {
+          this.$store.commit('loginStore/setUser',data.data);
           localStorage.setItem("token", data.data.remember_token);
           this.$router.push('/')
          Toast.success('登录成功')

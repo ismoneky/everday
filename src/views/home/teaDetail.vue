@@ -7,14 +7,9 @@
         <span>{{ list.real_name }}</span>
       </div>
       <div class="title_right">
-<<<<<<< HEAD
         <p @click="guanzhu">
           <span>{{ isgz | filgz }}</span>
           <!-- //lyx -->
-=======
-        <p @click="followFn">
-          <span>{{ state ? "关注" : "取消关注" }}</span>
->>>>>>> cd16087edc6536210a197b6d72c473f648f97354
         </p>
       </div>
     </div>
@@ -71,11 +66,7 @@ export default {
   },
   data() {
     return {
-<<<<<<< HEAD
       isgz: 1, //判断是否关注
-=======
-      state: null,
->>>>>>> cd16087edc6536210a197b6d72c473f648f97354
       tab: [
         { title: "讲师介绍", id: 1 },
         { title: "主讲课程", id: 2 },
@@ -87,7 +78,6 @@ export default {
     };
   },
   computed: {},
-<<<<<<< HEAD
   created() {
   },
   mounted(){
@@ -102,14 +92,6 @@ export default {
       } else {
         str = "取消关注";
         return str;
-=======
-  async created() {
-    // 老师详情
-    await getTeaDetail(this.$route.query.id).then((res) => {
-      // console.log(res);
-      if (res.data.code == 200) {
-        this.list = res.data.data.teacher;
->>>>>>> cd16087edc6536210a197b6d72c473f648f97354
       }
     },
   },
@@ -128,7 +110,6 @@ export default {
     gotoCourseDetail(id) {
       this.$router.push({ path: "/courseDetail", query: { id } });
     },
-<<<<<<< HEAD
     guanzhu() {
       getCollect(parseInt(this.$route.query.id)).then((res) => {
         console.log(res);
@@ -140,20 +121,6 @@ export default {
 
           }
       });
-=======
-    async followFn() {
-      let { data:res } = await getCollect(this.$route.query.id);
-      console.log(res);
-      if (res.code === 200) {
-        if (res.data.flag === 2) {
-          this.state = false;
-          Toast("已关注");
-        } else {
-          this.state = true;
-          Toast("已取消关注");
-        }
-      }
->>>>>>> cd16087edc6536210a197b6d72c473f648f97354
     },
     // tab选项卡
     changeTab(val) {

@@ -281,7 +281,6 @@ export default {
   },
   methods: {
     async userinfo() {
-      console.log(1);
       let { data } = await getprofile();
       if (data.code == 200) {
         this.$store.commit("loginStore/setUser", data.data);
@@ -333,17 +332,15 @@ export default {
       }
     },
     async afterRead(file) {
-      console.log(file.file);
       var formData = new FormData();
       formData.append("file", file.file);
-      console.log(formData.get("file"));
       let { data } = await changeimg(formData);
       if (data.code == 200) {
         this.objimg.avatar = data.data.path;
         getuserinfo(this.objimg);
       }
       this.show = false;
-    
+      this.$router.go(0);
     },
     onConfirm(value) {
       this.grade = value;
@@ -377,15 +374,12 @@ export default {
   width: 100%;
   height: 100%;
 }
-// border: 1px solid orange;
-//     background: rgba(rgb(255, 234, 196) , 0.3);
 .content {
   width: 100%;
   height: calc(100% - 0.9rem);
   margin-top: 0.1rem;
   padding: 0 0.2rem;
   background: white;
-
   img {
     width: 0.7rem;
     height: 0.7rem;

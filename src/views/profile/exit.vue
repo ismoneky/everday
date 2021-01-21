@@ -13,7 +13,7 @@ export default {
   name: 'exit',
   data() { 
     return {
-
+      obj:{}
     }
   },
   created() {
@@ -21,7 +21,8 @@ export default {
   },
   methods:{
       exited(){
-        localStorage.setItem('token','') 
+        localStorage.removeItem('token') 
+        this.$store.commit('loginStore/setUser',this.obj);
         this.$router.push('/login')
       }
   },

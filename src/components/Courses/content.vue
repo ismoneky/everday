@@ -18,7 +18,7 @@
           <p class="tit">
             <span>{{ item.title }}</span>
           </p>
-          <img src="222.png" alt="" class="img" v-show="item.has_buy===1?true:false">
+          <img src="/imgs/222.png" alt="" class="img" v-show="item.has_buy===1?true:false">
           <p class="cont">
             <span>3人已报名</span>
             <span class="right2"> 免费 </span>

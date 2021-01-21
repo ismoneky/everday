@@ -1,7 +1,7 @@
 <template>
   <div id="loading" v-show="show">
     <div class="loadimg">
-      <img src="/loading.gif" alt="" />
+      <img src="/imgs/loading.gif" alt="" />
     </div>
   </div>
 </template>
