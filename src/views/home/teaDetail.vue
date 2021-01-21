@@ -7,14 +7,9 @@
         <span>{{ list.real_name }}</span>
       </div>
       <div class="title_right">
-<<<<<<< HEAD
         <p @click="guanzhu">
           <span>{{ isgz | filgz }}</span>
           <!-- //lyx -->
-=======
-        <p @click="followFn">
-          <span>{{ state ? "关注" : "取消关注" }}</span>
->>>>>>> cd16087edc6536210a197b6d72c473f648f97354
         </p>
       </div>
     </div>
@@ -71,11 +66,7 @@ export default {
   },
   data() {
     return {
-<<<<<<< HEAD
       isgz: 1, //判断是否关注
-=======
-      state: null,
->>>>>>> cd16087edc6536210a197b6d72c473f648f97354
       tab: [
         { title: "讲师介绍", id: 1 },
         { title: "主讲课程", id: 2 },
@@ -86,41 +77,24 @@ export default {
       main: [], //主讲课程
     };
   },
-  computed: {},
-<<<<<<< HEAD
-  created() {
-  },
-  mounted(){
+  mounted() {
     this.getTeaDetails();
   },
-  filters: {
-    filgz(newval) {
-      var str = "";
-      if (newval == 2) {
-        str = "关注";
-        return str;
-      } else {
-        str = "取消关注";
-        return str;
-=======
   async created() {
     // 老师详情
     await getTeaDetail(this.$route.query.id).then((res) => {
       // console.log(res);
       if (res.data.code == 200) {
         this.list = res.data.data.teacher;
->>>>>>> cd16087edc6536210a197b6d72c473f648f97354
       }
-    },
+    });
   },
   methods: {
     getTeaDetails() {
-      
       getTeaDetail(this.$route.query.id).then((res) => {
         if (res.data.code == 200) {
           this.list = res.data.data.teacher;
           this.isgz = res.data.data.flag;
-   
         }
       });
     },
@@ -128,32 +102,17 @@ export default {
     gotoCourseDetail(id) {
       this.$router.push({ path: "/courseDetail", query: { id } });
     },
-<<<<<<< HEAD
+    // 关注
     guanzhu() {
       getCollect(parseInt(this.$route.query.id)).then((res) => {
         console.log(res);
-        this.isgz=res.data.data.flag
-               if(this.isgz==1){
-           Toast('关注成功');
-          }else{
-           Toast('取消成功');
-
-          }
-      });
-=======
-    async followFn() {
-      let { data:res } = await getCollect(this.$route.query.id);
-      console.log(res);
-      if (res.code === 200) {
-        if (res.data.flag === 2) {
-          this.state = false;
-          Toast("已关注");
+        this.isgz = res.data.data.flag;
+        if (this.isgz == 1) {
+          Toast("关注成功");
         } else {
-          this.state = true;
-          Toast("已取消关注");
+          Toast("取消成功");
         }
-      }
->>>>>>> cd16087edc6536210a197b6d72c473f648f97354
+      });
     },
     // tab选项卡
     changeTab(val) {
@@ -170,6 +129,18 @@ export default {
             this.main = res.data.data.list;
           }
         });
+      }
+    },
+  },
+  filters: {
+    filgz(newval) {
+      var str = "";
+      if (newval == 2) {
+        str = "关注";
+        return str;
+      } else {
+        str = "取消关注";
+        return str;
       }
     },
   },
